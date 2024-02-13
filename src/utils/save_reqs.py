@@ -1,9 +1,10 @@
-import os
+"""utils.save_reqs"""
 
+import os
 from config import PIP, REQS_PATH
 
 
-def save_requirements():
+def save_reqs():
     """
     dump saved venv packages to requirements file
     """

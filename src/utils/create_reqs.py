@@ -3,7 +3,7 @@
 from config import REQS_PATH
 
 
-def create_requirements():
+def create_reqs():
     """
     write a requirements file
     https://pip.pypa.io/en/stable/reference/requirements-file-format/
