@@ -11,6 +11,6 @@ def uninstall(args):
     """
     uninstall the given package
     """
-    packages = " ".join([pkg for pkg in args.package])
+    packages = " ".join(list(args.package))
     os.system(f"{PIP} uninstall -y {packages}")
     save_reqs()
