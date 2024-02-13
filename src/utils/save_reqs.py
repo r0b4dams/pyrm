@@ -1,4 +1,6 @@
-"""utils.save_reqs"""
+"""
+utils.save_reqs
+"""
 
 import os
 from config import PIP, REQS_PATH

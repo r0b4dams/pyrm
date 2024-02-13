@@ -1,4 +1,6 @@
-"""utils.clean"""
+"""
+commands.clean
+"""
 
 import os
 import shutil

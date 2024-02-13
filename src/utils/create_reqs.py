@@ -1,4 +1,6 @@
-"""utils.create_requirements"""
+"""
+utils.create_reqs
+"""
 
 from config import REQS_PATH
 

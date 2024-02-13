@@ -1,4 +1,6 @@
-"""config"""
+"""
+config
+"""
 
 REQS_PATH = ".requirements.txt"
 VENV_PATH = ".venv"
