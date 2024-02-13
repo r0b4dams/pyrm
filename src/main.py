@@ -19,11 +19,7 @@ def main():
 
     # install
     cmd_install = subparsers.add_parser("install")
-    cmd_install.add_argument(
-        "package",
-        nargs="?",
-        default=None,
-    )
+    cmd_install.add_argument("package", nargs="?", default=None)
     cmd_install.set_defaults(func=commands.install)
 
     # clean
