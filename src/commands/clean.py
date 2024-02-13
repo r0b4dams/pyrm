@@ -6,13 +6,13 @@ from config import VENV_PATH
 
 
 def clean(*_):
-    """clean command"""
+    """remove virtual environment and __pycache__ dirs"""
     clean_caches()
     clean_venv()
 
 
 def clean_caches():
-    """remove __pycachce__ dirs"""
+    """remove __pycache__ dirs"""
     for path, *_ in os.walk(os.getcwd(), topdown=True):
         if path.endswith("__pycache__"):
             shutil.rmtree(path)
