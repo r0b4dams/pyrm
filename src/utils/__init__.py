@@ -1,4 +1,4 @@
 """utils"""
 
-from .create_requirements import create_requirements
-from .save_requirements import save_requirements
+from .create_reqs import create_reqs
+from .save_reqs import save_reqs
