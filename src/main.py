@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-doc str
+A simple CLI to manage dependencies in a Python project
 """
 import argparse
 import commands
@@ -19,10 +19,17 @@ def main():
 
     # install
     cmd_install = subparsers.add_parser("install")
-    cmd_install.add_argument("package", type=str, default=None)
+    cmd_install.add_argument(
+        "package",
+        nargs="?",
+        default=None,
+    )
     cmd_install.set_defaults(func=commands.install)
 
-    # parse the args and call whatever function was selected
+    # clean
+    cmd_clean = subparsers.add_parser("clean")
+    cmd_clean.set_defaults(func=commands.clean)
+
     args = parser.parse_args()
     args.func(args)
 
