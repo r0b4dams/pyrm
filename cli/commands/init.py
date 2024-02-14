@@ -22,6 +22,8 @@ def init(args: Namespace) -> None:
     with open(PROJECT_JSON, "w+", encoding="utf-8") as f:
         json.dump(project_data, f, indent=2)
 
+    # TODO create a src folder if not exists
+
 
 def defaults() -> Tuple[dict, dict]:
     """

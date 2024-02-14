@@ -6,6 +6,8 @@ import os
 import json
 from config import PROJECT_JSON
 
+# TODO if no args given run main.py
+
 
 def run(args) -> None:
     """
@@ -16,7 +18,8 @@ def run(args) -> None:
     try:
         with open(PROJECT_JSON, "r", encoding="utf-8") as f:
             doc = json.load(f)
-            if script in doc["scripts"] and script is not None:
+
+            if script in doc["scripts"] and doc["scripts"] is not None:
                 os.system(doc["scripts"][script])
             else:
                 print(f'script "{script}" not found in {PROJECT_JSON} requirements')
