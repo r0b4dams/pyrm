@@ -3,19 +3,23 @@ commands.run
 """
 
 import os
-import yaml
+import json
+from config import PROJECT_JSON
 
 
-def run(args):
+def run(args) -> None:
     """
-    look for a script and run it if found
+    Look for a script in project.json and run it if found
     """
     (script,) = args.script
 
-    with open("bob.yaml", "r", encoding="utf-8") as file:
-        meta = yaml.safe_load(file)
+    try:
+        with open(PROJECT_JSON, "r", encoding="utf-8") as f:
+            doc = json.load(f)
+            if script in doc["scripts"] and script is not None:
+                os.system(doc["scripts"][script])
+            else:
+                print(f'script "{script}" not found in {PROJECT_JSON} requirements')
 
-        if script in meta["scripts"]:
-            os.system(meta["scripts"][script])
-        else:
-            print("script not found")
+    except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
+        print(e)
