@@ -11,6 +11,9 @@ parser = argparse.ArgumentParser(prog="bob", description="Python dev environment
 subparsers = parser.add_subparsers()
 
 # commands
+cmd_init = subparsers.add_parser("init")
+parser.add_argument("-y", type=bool, default=False)
+cmd_init.set_defaults(func=commands.init)
 
 cmd_run = subparsers.add_parser("run")
 cmd_run.add_argument("script", nargs=1)
