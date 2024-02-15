@@ -6,8 +6,8 @@ import os
 import json
 from argparse import Namespace
 from typing import Tuple
-from utils import generate_root, generate_entrypoint
 from config import PROJECT_JSON
+from utils import generate_root, generate_entrypoint, generate_gitignore
 
 
 def init(args: Namespace) -> None:
@@ -33,11 +33,9 @@ def init(args: Namespace) -> None:
     else:
         with open(PROJECT_JSON, "w+", encoding="utf-8") as f:
             json.dump(project_data, f, indent=2)
-        generate_entrypoint(project_data)
 
-        os.system(
-            "curl https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore >> .gitignore &> /dev/null"
-        )
+        generate_entrypoint(project_data)
+        generate_gitignore()
 
 
 def defaults() -> Tuple[dict, dict]:
