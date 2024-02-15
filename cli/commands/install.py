@@ -3,20 +3,11 @@ commands.install
 """
 
 import os
-import subprocess
 import tempfile
 import json
 from argparse import Namespace
+from utils import get_requirements
 from config import PIP, PROJECT_JSON, VENV_PATH
-
-# if no args:
-# look for package.json
-# exit if not found
-# get reqs from package.json
-# exit if parse err or not found
-
-# if args
-#
 
 
 def install(args: Namespace) -> None:
@@ -39,6 +30,9 @@ def install(args: Namespace) -> None:
     except AttributeError as attr_err:
         print(f"unable to install -> {attr_err}")
 
+    except TypeError as type_err:
+        print(f"unable to install -> {type_err}")
+
     except KeyError:
         print(f"unable to install: requirements not found in {PROJECT_JSON}")
 
@@ -47,27 +41,27 @@ def install_from_args(packages: list[str]) -> None:
     """
     Install given packages via pip
 
-    Creates a bob.yaml file if not found
+    Creates a project.json file if not found
     """
-    packages = " ".join(list(packages))
-    os.system(f"{PIP} install {packages}")
-
-    req_bytes = subprocess.check_output([PIP, "freeze"])
-    req_list = req_bytes.decode().splitlines()
-    requirements = dict([pkg.split("==") for pkg in req_list])
+    doc = {}
+    pkg_str = " ".join(list(packages))
 
     try:
-        with open(PROJECT_JSON, "r", encoding="utf-8") as r:
-            doc = json.load(r)
-            doc["requirements"] = requirements
+        with open(PROJECT_JSON, "r", encoding="utf-8") as rf:
+            doc = json.load(rf)
 
-        with open(PROJECT_JSON, "w", encoding="utf-8") as w:
-            json.dump(doc, w, sort_keys=False, indent=2)
+        if not isinstance(doc, dict):
+            raise TypeError(f"{PROJECT_JSON} must be dict")
 
-    # create a new project.json file if not found
+        os.system(f"{PIP} install {pkg_str}")
+
     except FileNotFoundError:
-        with open(PROJECT_JSON, "w+", encoding="utf-8") as f:
-            json.dump({"requirements": requirements}, f, indent=2)
+        pass
+
+    doc["requirements"] = get_requirements()
+
+    with open(PROJECT_JSON, "w+", encoding="utf-8") as wf:
+        json.dump(doc, wf, indent=2)
 
 
 def install_from_json() -> None:
@@ -80,24 +74,24 @@ def install_from_json() -> None:
     try:
         with open(PROJECT_JSON, "r", encoding="utf-8") as f:
             doc = json.load(f)
-            deps = doc["requirements"]
+            reqs = doc["requirements"]
 
-            if not isinstance(deps, dict):
-                raise AttributeError("requirements must be dict[str, str]")
+        if not isinstance(doc, dict):
+            raise TypeError(f"{PROJECT_JSON} must be dict")
 
-            reqs_txt = "\n".join(
-                # ignores ver values that ane not strings
-                [f"{pkg}=={ver}" for pkg, ver in deps.items() if isinstance(ver, str)]
-            )
+        if not isinstance(reqs, dict):
+            raise TypeError(f"{PROJECT_JSON} requirements must be dict[str, str]")
+
+        reqs_txt = "\n".join(
+            [f"{pkg}=={ver}" for pkg, ver in reqs.items() if isinstance(ver, str)]
+        )
+
+        with os.fdopen(fd, "w") as tmp:
+            tmp.write(reqs_txt)
+        os.system(f"{PIP} install -r {tmp_req_path}")
 
     except FileNotFoundError as fnf_err:
         print(f"unable to install -> {fnf_err}")
-
-    else:
-        with os.fdopen(fd, "w") as tmp:
-            tmp.write(reqs_txt)
-
-        os.system(f"{PIP} install -r {tmp_req_path}")
 
     finally:
         os.remove(tmp_req_path)
