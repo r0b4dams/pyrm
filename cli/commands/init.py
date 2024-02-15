@@ -2,6 +2,7 @@
 commands.init
 """
 
+import os
 import json
 from argparse import Namespace
 from typing import Tuple
@@ -33,6 +34,10 @@ def init(args: Namespace) -> None:
         with open(PROJECT_JSON, "w+", encoding="utf-8") as f:
             json.dump(project_data, f, indent=2)
         generate_entrypoint(project_data)
+
+        os.system(
+            "curl https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore >> .gitignore &> /dev/null"
+        )
 
 
 def defaults() -> Tuple[dict, dict]:
