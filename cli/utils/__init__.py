@@ -47,3 +47,19 @@ def generate_entrypoint(project_data: dict) -> None:
         main.write(f'    """\n    {fn_doc_str}\n    """\n')
         main.write('    print("Hello, World!")\n\n')
         main.write("main()\n")
+
+
+def generate_gitignore() -> None:
+    """
+    Fetch a gitignore template for python and save
+    """
+    os.system(
+        " ".join(
+            [
+                "curl",
+                "--silent"
+                "https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore",
+                "> .gitignore",
+            ]
+        )
+    )
