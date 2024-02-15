@@ -17,7 +17,7 @@ def main():
     # commands
 
     cmd_init = subparsers.add_parser("init")
-    cmd_init.add_argument("-y", type=bool, default=False)
+    cmd_init.add_argument("-y", default=False, action="store_true")
     cmd_init.set_defaults(func=commands.init)
 
     cmd_run = subparsers.add_parser("run")
