@@ -26,7 +26,7 @@ def run(args) -> None:
                 if doc["scripts"] and script in doc["scripts"]:
                     os.system(doc["scripts"][script])
                 else:
-                    print(f'script "{script}" not found in {PROJECT_JSON} requirements')
+                    print(f'script "{script}" not found in {PROJECT_JSON}')
 
         except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
             print(f"unable to run command -> {e}")
