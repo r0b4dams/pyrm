@@ -27,14 +27,11 @@ def install(args: Namespace) -> None:
     except json.decoder.JSONDecodeError as parse_err:
         print(f"unable to parse {PROJECT_JSON} -> {parse_err}")
 
-    except AttributeError as attr_err:
-        print(f"unable to install -> {attr_err}")
-
-    except TypeError as type_err:
-        print(f"unable to install -> {type_err}")
+    except (TypeError, AttributeError) as err:
+        print(f"unable to install -> {err}")
 
     except KeyError:
-        print(f"unable to install: requirements not found in {PROJECT_JSON}")
+        print(f"unable to install -> requirements not found in {PROJECT_JSON}")
 
 
 def install_from_args(packages: list[str]) -> None:
@@ -53,11 +50,10 @@ def install_from_args(packages: list[str]) -> None:
         if not isinstance(doc, dict):
             raise TypeError(f"{PROJECT_JSON} must be dict")
 
-        os.system(f"{PIP} install {pkg_str}")
-
     except FileNotFoundError:
         pass
 
+    os.system(f"{PIP} install {pkg_str}")
     doc["requirements"] = get_requirements()
 
     with open(PROJECT_JSON, "w+", encoding="utf-8") as wf:
