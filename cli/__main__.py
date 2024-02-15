@@ -13,7 +13,7 @@ def main():
     entrypoint
     """
     parser = argparse.ArgumentParser(
-        prog="bob", description="Python dev environment CLI"
+        prog="pyrob", description="Python dev environment CLI"
     )
     subparsers = parser.add_subparsers()
 
