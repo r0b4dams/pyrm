@@ -43,6 +43,8 @@ def init(args: Namespace) -> None:
 def defaults() -> Tuple[dict, dict]:
     """
     Create a dict with some default data
+
+    If a project.json file exists, attempts to grab data from it
     """
     root = generate_root()
     data = {**root}
@@ -54,9 +56,6 @@ def defaults() -> Tuple[dict, dict]:
         if not isinstance(doc, dict):
             raise TypeError(f"{PROJECT_JSON} must be dict")
 
-        # for the root keys,
-        # if value falsy go with root value
-        # else put back k/v found in doc as-is
         for k, v in doc.items():
             v_is_empty_str = isinstance(v, str) and not v.strip()
             if k in root and v_is_empty_str:
