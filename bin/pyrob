@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # python3 cli $@
-python3 ~/code/pyrob/cli $@
+python3 ~/code/pyrob/cli/main.py $@

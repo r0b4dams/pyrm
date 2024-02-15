@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+sudo cp bin/pyrob /usr/local/bin
