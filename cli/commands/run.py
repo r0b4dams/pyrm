@@ -23,10 +23,18 @@ def run(args) -> None:
             with open(PROJECT_JSON, "r", encoding="utf-8") as f:
                 doc = json.load(f)
 
-                if doc["scripts"] and script in doc["scripts"]:
-                    os.system(doc["scripts"][script])
-                else:
-                    print(f'script "{script}" not found in {PROJECT_JSON}')
+            if not isinstance(doc, dict):
+                raise TypeError(f"{PROJECT_JSON} must be dict")
+
+            scripts = doc["scripts"]
+
+            if not isinstance(scripts, dict):
+                raise TypeError(f"{PROJECT_JSON} scripts must be dict[str, str]")
+
+            if script in doc["scripts"]:
+                os.system(doc["scripts"][script])
+            else:
+                print(f'script "{script}" not found in {PROJECT_JSON}')
 
         except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
             print(f"unable to run command -> {e}")

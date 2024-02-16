@@ -6,7 +6,9 @@ from config import PIP, DEFAULT_SCRIPTS
 
 
 def get_requirements() -> dict:
-    """Cast pip freeze output to dict"""
+    """
+    Cast pip freeze output to dict
+    """
     req_bytes = subprocess.check_output([PIP, "freeze"])
     req_list = req_bytes.decode().splitlines()
     return dict([pkg.split("==") for pkg in req_list])
@@ -51,13 +53,13 @@ def generate_entrypoint(project_data: dict) -> None:
 
 def generate_gitignore() -> None:
     """
-    Fetch a gitignore template for python and save
+    Fetch and save a gitignore template
     """
     os.system(
         " ".join(
             [
                 "curl",
-                "--silent"
+                "--silent",
                 "https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore",
                 "> .gitignore",
             ]
