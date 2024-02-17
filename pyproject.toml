@@ -3,9 +3,7 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools >= 61.0"]
 
 [project]
-authors = [
-  {name = "Robert Adams", email = "r0b4dams@gmail.com"},
-]
+authors = [{name = "Robert Adams", email = "r0b4dams@gmail.com"}]
 description = "A CLI to manage dependencies in a Python project"
 dynamic = ["version"]
 license = {file = "LICENSE"}
