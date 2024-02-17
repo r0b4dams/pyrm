@@ -5,7 +5,7 @@ VERSION := $(shell cat VERSION)
 
 # requires build to use setuptools
 # pip install --upgrade build 
-build:
+build: clean
 	@python3 -m build
 
 install: build
