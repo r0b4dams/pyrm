@@ -1,7 +1,7 @@
 .PHONY: build install uninstall
 
 APP_NAME := "pyrob"
-VERSION := $(shell cat VERSION)
+VERSION := $(shell cat $(APP_NAME)/__init__.py | grep __version__ | cut -d "=" -f 2 | xargs echo -n)
 
 # requires build to use setuptools
 # pip install --upgrade build 
