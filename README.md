@@ -1,3 +1,3 @@
 # pyrob
 
-A simple CLI to manage dependencies in a Python project
+A CLI to manage dependencies in a Python project
