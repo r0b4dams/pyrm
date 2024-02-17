@@ -2,7 +2,6 @@
 commands.init
 """
 
-import os
 import json
 from argparse import Namespace
 from typing import Tuple
@@ -24,7 +23,7 @@ def init(args: Namespace) -> None:
         print(json.dumps(project_data, indent=2))
 
         if not args.y and input("Is this OK? (yes) "):
-            print("Abort mission")  # quit if anything other than empty str
+            print("Abort init")  # quit if anything other than empty str
             return
 
     except (KeyboardInterrupt, EOFError):
