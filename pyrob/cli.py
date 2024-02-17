@@ -6,14 +6,12 @@ A simple CLI to manage dependencies in a Python project
 
 import argparse
 import pyrob.commands
+import pyrob.config
 
 
 def main():
-    """
-    entrypoint
-    """
     parser = argparse.ArgumentParser(
-        prog="pyrob", description="Python dev environment CLI"
+        prog="pyrob", description="A CLI to manage dependencies in a Python project"
     )
     subparsers = parser.add_subparsers()
 
@@ -40,3 +38,5 @@ def main():
 
     if hasattr(args, "func"):
         args.func(args)
+    else:
+        print(f"{__name__} v{pyrob.config.VERSION}")
