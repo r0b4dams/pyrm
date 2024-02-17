@@ -8,7 +8,6 @@ from config import VENV_PATH
 
 
 def clean(*_) -> None:
-    """remove virtual environment and __pycache__ dirs"""
     clean_caches()
     clean_venv()
 
