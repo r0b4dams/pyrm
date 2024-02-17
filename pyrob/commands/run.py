@@ -4,7 +4,7 @@ commands.run
 
 import os
 import json
-from config import PROJECT_JSON, PYTHON
+from pyrob.config import PROJECT_JSON, PYTHON, VENV_PATH
 
 
 def run(args) -> None:
@@ -14,6 +14,9 @@ def run(args) -> None:
     Runs src/main/py if no script given
     """
     script = args.script
+
+    if not os.path.exists(".venv"):
+        os.system(f"python3 -m venv {VENV_PATH}")
 
     if not script:
         os.system(f"{PYTHON} src/main.py")

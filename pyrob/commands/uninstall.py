@@ -5,8 +5,8 @@ commands.uninstall
 import os
 import json
 from argparse import Namespace
-from config import PIP, VENV_PATH, PROJECT_JSON
-from utils import get_requirements
+from pyrob.config import PIP, VENV_PATH, PROJECT_JSON
+from pyrob.utils import get_requirements
 
 
 def uninstall(args: Namespace) -> None:

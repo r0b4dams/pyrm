@@ -6,8 +6,8 @@ import os
 import tempfile
 import json
 from argparse import Namespace
-from utils import get_requirements
-from config import PIP, PROJECT_JSON, VENV_PATH
+from pyrob.utils import get_requirements
+from pyrob.config import PIP, PROJECT_JSON, VENV_PATH
 
 
 def install(args: Namespace) -> None:

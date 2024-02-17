@@ -1,5 +1,5 @@
 """
-config
+pyrob.config
 """
 
 VENV_PATH = ".venv"

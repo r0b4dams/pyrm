@@ -1,5 +1,5 @@
 """
-commands
+pyrob.commands
 """
 
 from .init import init

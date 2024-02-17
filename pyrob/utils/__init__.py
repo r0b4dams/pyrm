@@ -1,8 +1,10 @@
-"""utils"""
+"""
+pyrob.utils
+"""
 
 import os
 import subprocess
-from config import PIP, DEFAULT_SCRIPTS
+from pyrob.config import PIP, DEFAULT_SCRIPTS
 
 
 def get_requirements() -> dict:
@@ -31,9 +33,9 @@ def generate_root() -> dict:
     return root
 
 
-def generate_entrypoint(project_data: dict) -> None:
+def generate_files(project_data: dict) -> None:
     """
-    Create a source folder with app entrypoint
+    Create a /src dir with app entrypoint
     """
     src_path = os.path.join(os.getcwd(), "src")
 
@@ -43,15 +45,24 @@ def generate_entrypoint(project_data: dict) -> None:
     mod_doc_str = project_data["name"] if project_data["name"] else "A new project!"
     fn_doc_str = "Run the app with `pyrob run`"
 
-    with open(f"{src_path}/main.py", "w+", encoding="utf-8") as main:
-        main.write(f'"""\n{mod_doc_str}\n"""\n\n')
-        main.write("def main():\n")
-        main.write(f'    """\n    {fn_doc_str}\n    """\n')
-        main.write('    print("Hello, World!")\n\n')
-        main.write("main()\n")
+    app_entrypoint = f"{src_path}/main.py"
+    if not os.path.exists(app_entrypoint):
+        with open(app_entrypoint, "x", encoding="utf-8") as main:
+            main.write(f'"""\n{mod_doc_str}\n"""\n\n')
+            main.write("def main():\n")
+            main.write(f'    """\n    {fn_doc_str}\n    """\n')
+            main.write('    print("Hello, World!")\n\n')
+            main.write("main()\n")
+
+    app_init = f"{src_path}/__init__.py"
+    if not os.path.exists(app_init):
+        with open(f"{src_path}/__init__.py", "x", encoding="utf-8"):
+            pass
+
+    fetch_gitignore()
 
 
-def generate_gitignore() -> None:
+def fetch_gitignore() -> None:
     """
     Fetch and save a gitignore template
     """

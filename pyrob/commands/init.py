@@ -1,12 +1,12 @@
 """
-commands.init
+pyrob.commands.init
 """
 
 import json
 from argparse import Namespace
 from typing import Tuple
-from config import PROJECT_JSON
-from utils import generate_root, generate_entrypoint, generate_gitignore
+from pyrob.config import PROJECT_JSON
+from pyrob.utils import generate_root, generate_files
 
 
 def init(args: Namespace) -> None:
@@ -16,15 +16,16 @@ def init(args: Namespace) -> None:
     try:
         if args.y:
             project_data, *_ = defaults()
+            print("Project initialized with:")
+            print(json.dumps(project_data, indent=2))
         else:
             project_data = prompts()
+            print("Initializing project with:")
+            print(json.dumps(project_data, indent=2))
 
-        print("Initializing project with:")
-        print(json.dumps(project_data, indent=2))
-
-        if not args.y and input("Is this OK? (yes) "):
-            print("Abort init")  # quit if anything other than empty str
-            return
+            if not args.y and input("Is this OK? (yes) "):
+                print("Abort init")  # quit if anything other than empty str
+                return
 
     except (KeyboardInterrupt, EOFError):
         print("\nexit init")
@@ -33,8 +34,7 @@ def init(args: Namespace) -> None:
         with open(PROJECT_JSON, "w+", encoding="utf-8") as f:
             json.dump(project_data, f, indent=2)
 
-        generate_entrypoint(project_data)
-        generate_gitignore()
+        generate_files(project_data)
 
 
 def defaults() -> Tuple[dict, dict]:

@@ -1,10 +1,10 @@
 """
-commands.clean
+pyrob.commands.clean
 """
 
 import os
 import shutil
-from config import VENV_PATH
+from pyrob.config import VENV_PATH
 
 
 def clean(*_) -> None:
