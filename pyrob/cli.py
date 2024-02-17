@@ -6,7 +6,7 @@ A simple CLI to manage dependencies in a Python project
 
 import argparse
 import pyrob.commands
-import pyrob.config
+from . import __version__
 
 
 def main():
@@ -39,4 +39,4 @@ def main():
     if hasattr(args, "func"):
         args.func(args)
     else:
-        print(f"{__name__} v{pyrob.config.VERSION}")
+        print(f"{__name__} v{__version__}")

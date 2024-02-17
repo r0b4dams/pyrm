@@ -17,4 +17,4 @@ requires-python = ">=3.10"
 pyrob = "pyrob.cli:main"
 
 [tool.setuptools.dynamic]
-version = {file = ["VERSION"]}
+version = {attr = "pyrob.__version__"}
