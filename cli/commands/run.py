@@ -4,7 +4,7 @@ commands.run
 
 import os
 import json
-from config import PROJECT_JSON
+from config import PROJECT_JSON, PYTHON
 
 
 def run(args) -> None:
@@ -16,7 +16,7 @@ def run(args) -> None:
     script = args.script
 
     if not script:
-        os.system("python3 src/main.py")
+        os.system(f"{PYTHON} src/main.py")
 
     else:
         try:
