@@ -18,7 +18,8 @@ uninstall:
 
 clean:
 	@find . \
-	\( -name dist \
+	\( -name .venv \
+	-o -name dist \
 	-o -name __pycache__ \
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
