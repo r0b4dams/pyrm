@@ -4,7 +4,7 @@ import json
 from argparse import Namespace
 from typing import Tuple
 from pyrob.config import PROJECT_JSON
-from pyrob.utils import load_project_json, generate_root, generate_files
+from pyrob.utils import load_project_json, generate_base, generate_files
 
 
 def init(args: Namespace) -> None:
@@ -41,15 +41,15 @@ def defaults() -> Tuple[dict, dict]:
 
     If a project.json file exists, attempts to grab data from it
     """
-    root = generate_root()
-    data = {**root}
+    base = generate_base()
+    data = {**base}
 
     try:
         doc = load_project_json()
 
         for k, v in doc.items():
-            if k in root and not v:
-                data[k] = root[k]
+            if k in base and not v:
+                data[k] = base[k]
             else:
                 data[k] = v
 
@@ -60,19 +60,19 @@ def defaults() -> Tuple[dict, dict]:
         print(f"{PROJECT_JSON} found but unable to parse -> {e}")
         print("using defaults")
 
-    return data, root
+    return data, base
 
 
 def prompts() -> dict:
     """
     Get project data from user input
     """
-    data, root = defaults()
+    data, base = defaults()
 
     if not data:
-        data = root
+        data = base
 
-    for key in root:
+    for key in base:
         if key == "scripts":
             continue
         res = input(f"{key} ({data[key]}): ")
