@@ -5,7 +5,7 @@ dynamic = ["version"]
 license = {file = "LICENSE"}
 name = "pyrob"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 
 [project.scripts]
 pyrob = "pyrob.cli:main"
