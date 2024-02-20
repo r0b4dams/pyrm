@@ -10,7 +10,7 @@ def load_project_json() -> dict:
     """
     Cast metadata to dict
 
-    JSON can be an array, so raise if a dict not found
+    JSON can be a list, so raise if a dict not found
     """
     with open(PROJECT_JSON, "r", encoding="utf-8") as f:
         doc = json.load(f)
