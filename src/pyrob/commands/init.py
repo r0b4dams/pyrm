@@ -1,7 +1,3 @@
-"""
-pyrob.commands.init
-"""
-
 import json
 from argparse import Namespace
 from typing import Tuple

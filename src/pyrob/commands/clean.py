@@ -1,7 +1,3 @@
-"""
-pyrob.commands.clean
-"""
-
 import os
 import shutil
 from pyrob.config import VENV_PATH
