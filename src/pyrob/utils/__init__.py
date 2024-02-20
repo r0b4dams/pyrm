@@ -8,6 +8,8 @@ from pyrob.config import PIP, PROJECT_JSON, DEFAULT_SCRIPTS
 
 def load_project_json() -> dict:
     """
+    Cast metadata to dict
+
     JSON can be an array, so raise if a dict not found
     """
     with open(PROJECT_JSON, "r", encoding="utf-8") as f:
@@ -28,13 +30,13 @@ def get_requirements() -> dict:
     return dict([pkg.split("==") for pkg in req_list])
 
 
-def generate_root() -> dict:
+def generate_base() -> dict:
     """
-    Setup a dict to create a project.json file
+    Setup a dict with to create a project.json file
     """
     *_, current_folder_name = os.path.split(os.getcwd())
 
-    root = {
+    base = {
         "name": current_folder_name,
         "version": "0.0.1",
         "author": "bob",  # get from git?
@@ -42,7 +44,7 @@ def generate_root() -> dict:
         "scripts": DEFAULT_SCRIPTS,
     }
 
-    return root
+    return base
 
 
 def generate_files(project_data: dict) -> None:
