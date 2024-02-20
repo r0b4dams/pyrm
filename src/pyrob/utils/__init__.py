@@ -2,7 +2,21 @@
 
 import os
 import subprocess
-from pyrob.config import PIP, DEFAULT_SCRIPTS
+import json
+from pyrob.config import PIP, PROJECT_JSON, DEFAULT_SCRIPTS
+
+
+def load_project_json() -> dict:
+    """
+    JSON can be an array, so raise if a dict not found
+    """
+    with open(PROJECT_JSON, "r", encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if not isinstance(doc, dict):
+        raise TypeError(f"{PROJECT_JSON} must be dict")
+
+    return doc
 
 
 def get_requirements() -> dict:

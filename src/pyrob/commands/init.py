@@ -4,12 +4,12 @@ import json
 from argparse import Namespace
 from typing import Tuple
 from pyrob.config import PROJECT_JSON
-from pyrob.utils import generate_root, generate_files
+from pyrob.utils import load_project_json, generate_root, generate_files
 
 
 def init(args: Namespace) -> None:
     """
-    Initialize a project and add a project.json file containing project data
+    Create project files
     """
     try:
         if args.y:
@@ -45,15 +45,10 @@ def defaults() -> Tuple[dict, dict]:
     data = {**root}
 
     try:
-        with open(PROJECT_JSON, "r", encoding="utf-8") as f:
-            doc = json.load(f)
-
-        if not isinstance(doc, dict):
-            raise TypeError(f"{PROJECT_JSON} must be dict")
+        doc = load_project_json()
 
         for k, v in doc.items():
-            v_is_empty_str = isinstance(v, str) and not v.strip()
-            if k in root and v_is_empty_str:
+            if k in root and not v:
                 data[k] = root[k]
             else:
                 data[k] = v

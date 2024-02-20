@@ -2,6 +2,7 @@
 
 import os
 import json
+from pyrob.utils import load_project_json
 from pyrob.config import PROJECT_JSON, PYTHON, VENV_PATH
 
 
@@ -9,7 +10,7 @@ def run(args) -> None:
     """
     Look for a script in project.json and run it if found
 
-    Runs src/main/py if no script given
+    Runs src/main.py if no script given
     """
     script = args.script
 
@@ -21,12 +22,7 @@ def run(args) -> None:
 
     else:
         try:
-            with open(PROJECT_JSON, "r", encoding="utf-8") as f:
-                doc = json.load(f)
-
-            if not isinstance(doc, dict):
-                raise TypeError(f"{PROJECT_JSON} must be dict")
-
+            doc = load_project_json()
             scripts = doc["scripts"]
 
             if not isinstance(scripts, dict):
@@ -37,5 +33,5 @@ def run(args) -> None:
             else:
                 print(f'script "{script}" not found in {PROJECT_JSON}')
 
-        except (json.decoder.JSONDecodeError, FileNotFoundError) as e:
+        except (json.decoder.JSONDecodeError, FileNotFoundError, TypeError) as e:
             print(f"unable to run command -> {e}")
