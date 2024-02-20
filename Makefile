@@ -1,13 +1,10 @@
-.PHONY: build clean install uninstall clean
+.PHONY: build install uninstall version clean upload
 
 APP_NAME := pyrob
 VERSION := $(shell cat VERSION)
 
-all:
-	@echo $(APP_NAME) v$(VERSION)
-
 build: clean
-	@python3 -m pip install --upgrade build
+	@pip install --upgrade build
 	@python3 -m build
 
 install: build
@@ -26,3 +23,8 @@ clean:
 	-o -name __pycache__ \
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
+
+upload_test: build
+	@pip install --upgrade twine
+	@twine upload -r testpypi dist/*
+	@twine upload dist/*
