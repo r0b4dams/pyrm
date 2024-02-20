@@ -16,6 +16,9 @@ install: build
 uninstall:
 	@pip uninstall $(APP_NAME)
 
+version:
+	@echo $(v) | tr -d '\t' > VERSION
+
 clean:
 	@find . \
 	\( -name .venv \
