@@ -2,6 +2,14 @@
 
 A CLI to manage dependencies in a Python project
 
+# Installation
+
+Install from TestPyPI:
+
+```
+pip install -i https://test.pypi.org/simple/ pyrob
+```
+
 # Usage
 
 | Command           | Description                                                                                              |
