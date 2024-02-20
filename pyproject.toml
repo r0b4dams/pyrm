@@ -11,12 +11,13 @@ requires-python = ">=3.8"
 pyrob = "pyrob.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/r0b4dams/pyrob"
+Issues = "https://github.com/r0b4dams/pyrob/issues"
+Repository = "https://github.com/r0b4dams/pyrob.git"
 
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = ["setuptools >= 61.0"]
 
 [tool.setuptools.dynamic]
-version = {file = ["VERSION"]}
+version = {file = "VERSION"}
