@@ -1,11 +1,13 @@
-.PHONY: build install uninstall
+.PHONY: build clean install uninstall clean
 
-APP_NAME := "pyrob"
-VERSION := $(shell cat $(APP_NAME)/__init__.py | grep __version__ | cut -d "=" -f 2 | xargs echo -n)
+APP_NAME := pyrob
+VERSION := $(shell cat VERSION)
 
-# requires build to use setuptools
-# pip install --upgrade build 
+all:
+	@echo $(APP_NAME) v$(VERSION)
+
 build: clean
+	@python3 -m pip install --upgrade build
 	@python3 -m build
 
 install: build
@@ -15,5 +17,8 @@ uninstall:
 	@pip uninstall $(APP_NAME)
 
 clean:
-	@rm -rf dist pyrob.egg-info
-	@find . \( -name __pycache__ -o -name "*.pyc" \) -delete
+	@find . \
+	\( -name dist \
+	-o -name __pycache__ \
+	-o -name "*.egg-info" \
+	\) -exec rm -rf {} +
