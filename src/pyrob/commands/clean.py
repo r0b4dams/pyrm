@@ -1,9 +1,12 @@
+"""pyrob.commands.clean"""
+
 import os
 import shutil
 from pyrob.config import VENV_PATH
 
 
 def clean(*_) -> None:
+    """remove artifacts"""
     clean_caches()
     clean_venv()
 

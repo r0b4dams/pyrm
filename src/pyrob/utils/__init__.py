@@ -1,3 +1,5 @@
+"""pyrob.utils"""
+
 import os
 import subprocess
 from pyrob.config import PIP, DEFAULT_SCRIPTS

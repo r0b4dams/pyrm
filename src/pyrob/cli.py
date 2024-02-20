@@ -1,9 +1,14 @@
+"""pyrob.cli"""
+
 from argparse import ArgumentParser
 from pyrob import commands
 from pyrob.config import VERSION
 
 
 def main():
+    """
+    app entrypoint
+    """
     parser = ArgumentParser(
         prog="pyrob", description="A CLI to manage dependencies in a Python project"
     )

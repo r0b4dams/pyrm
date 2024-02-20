@@ -1,3 +1,5 @@
+"""pyrob.commands.uninstall"""
+
 import os
 import json
 from argparse import Namespace

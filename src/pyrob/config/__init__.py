@@ -1,3 +1,5 @@
+"""pyrob.config"""
+
 from os import getenv
 from importlib.metadata import version
 

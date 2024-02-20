@@ -1,3 +1,5 @@
+"""pyrob.commands.install"""
+
 import os
 import tempfile
 import json
