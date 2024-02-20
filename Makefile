@@ -4,14 +4,14 @@ APP_NAME := pyrob
 VERSION := $(shell cat VERSION)
 
 build: clean
-	@pip install --upgrade build
+	@python3 -m pip install --upgrade build
 	@python3 -m build
 
 install: build
-	@pip install dist/$(APP_NAME)-$(VERSION).tar.gz
+	@python3 -m pip install dist/$(APP_NAME)-$(VERSION).tar.gz
 
 uninstall:
-	@pip uninstall $(APP_NAME)
+	@python3 -m pip uninstall $(APP_NAME)
 
 version:
 	@echo $(v) | tr -d '\t' > VERSION
@@ -25,6 +25,7 @@ clean:
 	\) -exec rm -rf {} +
 
 upload_test: build
-	@pip install --upgrade twine
+	@python3 -m pip install --upgrade twine
+	@twine check dist/*
 	@twine upload -r testpypi dist/*
 	@twine upload dist/*
