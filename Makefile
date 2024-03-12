@@ -24,7 +24,7 @@ format: .venv
 
 test: .venv
 	@$(PIP) install --upgrade pytest > /dev/null
-	@pytest tests
+	@pytest tests --no-header -vv
 
 build: clean venv
 	@$(PIP) install --upgrade build > /dev/null
