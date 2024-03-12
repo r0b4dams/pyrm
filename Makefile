@@ -1,7 +1,6 @@
 .PHONY: build install uninstall version clean upload_test
 
 APP_NAME := pyrob
-
 VENV := .venv
 PY := $(VENV)/bin/python3
 PIP := $(VENV)/bin/pip
@@ -15,8 +14,20 @@ venv:
 	@python3 -m venv $(VENV)
 	@chmod +x $(VENV)/bin/activate
 
-build: clean
-	@$(PIP) install --upgrade build
+lint: .venv
+	@$(PIP) install --upgrade pylint > /dev/null
+	@pylint src 
+
+format: .venv
+	@$(PIP) install --upgrade black > /dev/null
+	@black src
+
+test: .venv
+	@$(PIP) install --upgrade pytest > /dev/null
+	@pytest tests
+
+build: clean venv
+	@$(PIP) install --upgrade build > /dev/null
 	@python3 -m build
 
 install: build
