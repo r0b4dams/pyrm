@@ -3,7 +3,7 @@
 APP_NAME := pyrob
 VENV := .venv
 PY := $(VENV)/bin/python3
-PIP := $(VENV)/bin/pip
+PIP := $(PY) -m pip
 VERSION := $(shell cat VERSION)
 
 dev: venv
@@ -12,6 +12,7 @@ dev: venv
 
 venv:
 	@python3 -m venv $(VENV)
+	@$(PIP) install --upgrade pip
 	@chmod +x $(VENV)/bin/activate
 
 lint: venv
@@ -47,7 +48,7 @@ clean:
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
 
-upload_test: build
+upload_testpypi: build
 	@$(PIP) install --upgrade twine
 	@twine check dist/*
 	@twine upload -r testpypi dist/*
