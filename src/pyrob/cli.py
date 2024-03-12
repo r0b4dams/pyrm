@@ -6,9 +6,6 @@ from pyrob.config import VERSION
 
 
 def main():
-    """
-    app entrypoint
-    """
     parser = ArgumentParser(
         prog="pyrob", description="A CLI to manage dependencies in a Python project"
     )
