@@ -14,15 +14,15 @@ venv:
 	@python3 -m venv $(VENV)
 	@chmod +x $(VENV)/bin/activate
 
-lint: .venv
+lint: venv
 	@$(PIP) install --upgrade pylint > /dev/null
 	@pylint src 
 
-format: .venv
+format: venv
 	@$(PIP) install --upgrade black > /dev/null
 	@black src
 
-test: .venv
+test: venv
 	@$(PIP) install --upgrade pytest > /dev/null
 	@pytest tests -v
 
