@@ -12,7 +12,7 @@ dev: venv
 
 venv:
 	@python3 -m venv $(VENV)
-	@$(PIP) install --upgrade pip
+	@$(PIP) install --upgrade pip > /dev/null
 	@chmod +x $(VENV)/bin/activate
 
 lint: .venv
