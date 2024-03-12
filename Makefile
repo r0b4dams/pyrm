@@ -1,7 +1,14 @@
 .PHONY: build install uninstall version clean upload_test
 
+VENV := .venv
 APP_NAME := pyrob
 VERSION := $(shell cat VERSION)
+
+venv:
+	@python3 -m venv $(VENV)
+	@chmod +x $(VENV)/bin/activate
+	@echo "$(VENV) created. Run the following command to activate:"
+	@echo "source $(VENV)/bin/activate" 
 
 build: clean
 	@python3 -m pip install --upgrade build
