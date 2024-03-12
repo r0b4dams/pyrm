@@ -19,6 +19,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - run: |
+      - name: Test
+        run: |
           make venv
           make test
