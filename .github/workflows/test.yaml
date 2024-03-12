@@ -20,5 +20,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - run: |
-        make venv
-        make test
+          make venv
+          make test
