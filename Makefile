@@ -15,21 +15,21 @@ venv:
 	@$(PIP) install --upgrade pip
 	@chmod +x $(VENV)/bin/activate
 
-lint: venv
+lint: .venv
 	@$(PIP) install --upgrade pylint > /dev/null
-	@pylint src 
+	@$(PY) -m pylint src 
 
-format: venv
+format: .venv
 	@$(PIP) install --upgrade black > /dev/null
-	@black src
+	@$(PY) -m black src
 
-test: venv
+test: .venv
 	@$(PIP) install --upgrade pytest > /dev/null
-	@pytest tests -v
+	@$(PY) -m pytest tests -v
 
 build: clean venv
 	@$(PIP) install --upgrade build > /dev/null
-	@python3 -m build
+	@$(PY) -m python3 -m build
 
 install: build
 	@$(PIP) install dist/$(APP_NAME)-$(VERSION).tar.gz
