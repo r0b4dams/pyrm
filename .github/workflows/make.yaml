@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-        run: echo testingtestingtesting
 
       - name: Upgrade pip
         run: python3 -m pip install --upgrade pip 
