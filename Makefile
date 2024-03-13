@@ -37,9 +37,6 @@ install: build
 uninstall:
 	@$(PIP) uninstall $(APP_NAME)
 
-version:
-	@echo $(v) | tr -d '\t' > VERSION
-
 clean:
 	@find . \
 	\( -name .venv \
