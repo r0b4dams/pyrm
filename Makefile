@@ -1,6 +1,6 @@
 .PHONY: build install uninstall version clean upload_test
 
-APP_NAME := pyrob
+APP_NAME := pyrm
 VENV := .venv
 PY := $(VENV)/bin/python3
 PIP := $(PY) -m pip

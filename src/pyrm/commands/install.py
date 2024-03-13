@@ -4,8 +4,8 @@ import os
 import tempfile
 import json
 from argparse import Namespace
-from pyrob.utils import get_requirements
-from pyrob.config import PIP, PROJECT_JSON, VENV_PATH
+from pyrm.utils import get_requirements
+from pyrm.config import PIP, PROJECT_JSON, VENV_PATH
 
 
 def install(args: Namespace) -> None:

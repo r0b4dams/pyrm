@@ -3,8 +3,8 @@
 import json
 from argparse import Namespace
 from typing import Tuple
-from pyrob.config import PROJECT_JSON
-from pyrob.utils import load_project_json, generate_base, generate_files
+from pyrm.config import PROJECT_JSON
+from pyrm.utils import load_project_json, generate_base, generate_files
 
 
 def init(args: Namespace) -> None:

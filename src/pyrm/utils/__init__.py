@@ -3,7 +3,7 @@
 import os
 import subprocess
 import json
-from pyrob.config import PIP, PROJECT_JSON, DEFAULT_SCRIPTS
+from pyrm.config import PIP, PROJECT_JSON, DEFAULT_SCRIPTS
 
 
 def load_project_json() -> dict:

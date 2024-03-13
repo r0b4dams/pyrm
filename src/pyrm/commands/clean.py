@@ -2,7 +2,7 @@
 
 import os
 import shutil
-from pyrob.config import VENV_PATH
+from pyrm.config import VENV_PATH
 
 
 def clean(*_) -> None:

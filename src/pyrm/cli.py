@@ -1,8 +1,8 @@
 """pyrob.cli"""
 
 from argparse import ArgumentParser
-from pyrob import commands
-from pyrob.config import VERSION
+from pyrm import commands
+from pyrm.config import VERSION
 
 
 def main():

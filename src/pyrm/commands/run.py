@@ -2,8 +2,8 @@
 
 import os
 import json
-from pyrob.utils import load_project_json
-from pyrob.config import PROJECT_JSON, PYTHON, VENV_PATH
+from pyrm.utils import load_project_json
+from pyrm.config import PROJECT_JSON, PYTHON, VENV_PATH
 
 
 def run(args) -> None:
