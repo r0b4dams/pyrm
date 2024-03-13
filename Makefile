@@ -29,7 +29,7 @@ test: .venv
 
 build: clean venv
 	@$(PIP) install --upgrade build > /dev/null
-	@$(PY) -m python3 -m build
+	@$(PY) -m build
 
 install: build
 	@$(PIP) install dist/$(APP_NAME)-$(VERSION).tar.gz

@@ -3,4 +3,4 @@
 # run bin/dev to invoke the cli without installing
 # works for ad-hoc testing but will need updating if packages are used
 cd src
-python3 -c "from pyrm.cli import main; main()" $@
+python3 -m pyrm $@

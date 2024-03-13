@@ -1,1 +1,1 @@
-"""pyrob"""
+print("init")
