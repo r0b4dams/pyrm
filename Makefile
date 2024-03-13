@@ -23,6 +23,10 @@ format: .venv
 	@$(PIP) install --upgrade black > /dev/null
 	@$(PY) -m black src
 
+typecheck: .venv
+	@$(PIP) install --upgrade mypy > /dev/null
+	@$(PY) -m mypy src
+
 test: .venv
 	@$(PIP) install --upgrade pytest > /dev/null
 	@$(PY) -m pytest tests -v
@@ -42,6 +46,7 @@ clean:
 	\( -name .venv \
 	-o -name dist \
 	-o -name __pycache__ \
+	-o -name "*.mypy_cache" \
 	-o -name "*.pytest_cache" \
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
