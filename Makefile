@@ -19,7 +19,7 @@ venv:
 
 lint: .venv
 	@$(PIP) install --upgrade pylint > /dev/null
-	@$(PY) -m pylint src 
+	@$(PY) -m pylint src --ignore-paths src/pyrm/__templates__
 
 format: .venv
 	@$(PIP) install --upgrade black > /dev/null

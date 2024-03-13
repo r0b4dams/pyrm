@@ -21,3 +21,6 @@ requires = ["setuptools >= 61.0"]
 
 [tool.setuptools.dynamic]
 version = {attr = "pyrm.__version__"}
+
+[tool.pylint.MASTER]
+ignore-paths = '^src/pyrm/__templates__/*$'

@@ -1,5 +1,5 @@
 """
-pyrm.config
+pyrm.config.vars
 """
 
 PROJECT_JSON = "project.json"
