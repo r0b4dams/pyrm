@@ -20,4 +20,4 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools >= 61.0"]
 
 [tool.setuptools.dynamic]
-version = {file = "VERSION"}
+version = {attr = "pyrm.__version__"}
