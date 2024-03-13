@@ -1,12 +1,14 @@
 .PHONY: build install uninstall version clean upload_test
 
 APP_NAME := pyrm
+VERSION := $(shell python3 -c "from src import $(APP_NAME); print($(APP_NAME).__version__)")
+
 VENV := .venv
 PY := $(VENV)/bin/python3
 PIP := $(PY) -m pip
-VERSION := $(shell cat VERSION)
 
 dev: venv
+	@echo "$(APP_NAME) $(VERSION)"
 	@echo "$(VENV) created. Run the following command to activate:"
 	@echo "source $(VENV)/bin/activate" 
 
