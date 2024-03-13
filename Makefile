@@ -45,6 +45,7 @@ clean:
 	\( -name .venv \
 	-o -name dist \
 	-o -name __pycache__ \
+	-o -name "*.pytest_cache" \
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
 
