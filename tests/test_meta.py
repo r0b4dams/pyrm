@@ -5,7 +5,7 @@ import pytest
 import src.pyrm.utils.meta
 
 
-def test_read_good():
+def test_read_json():
     fd, test_path = tempfile.mkstemp()
     test_dict = {"hello": "world!"}
 
@@ -16,7 +16,7 @@ def test_read_good():
     os.remove(test_path)
 
 
-def test_read_bad():
+def test_read_json_raise():
     fd, test_path = tempfile.mkstemp()
     test = [{"foo": "bar"}]
 
@@ -27,5 +27,4 @@ def test_read_bad():
         src.pyrm.utils.meta.read_json(test_path)
 
     assert excinfo.type is TypeError
-
     os.remove(test_path)
