@@ -2,25 +2,30 @@
 pyrm.utils.meta
 """
 
+import sys
 import json
 
 
-def read(filepath: str) -> dict:
+def read(file: str) -> dict:
     """
     Read json as dict
     """
-    with open(filepath, encoding="utf-8") as f:
-        doc = json.load(f)
+    try:
+        with open(file, "r", encoding="utf-8") as f:
+            doc = json.load(f)
 
-    if isinstance(doc, dict):
-        return doc
+            if not isinstance(doc, dict):
+                raise TypeError(f"{file} must be dict. Received {type(doc)}")
 
-    raise TypeError(f"{filepath} must be a dict")
+            return doc
+
+    except (json.decoder.JSONDecodeError, TypeError) as e:
+        sys.exit(e)
 
 
-def write(filepath: str, data: dict) -> None:
+def write(file: str, data: dict) -> None:
     """
     Write dict to json
     """
-    with open(filepath, "w+", encoding="utf-8") as f:
+    with open(file, "w+", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
