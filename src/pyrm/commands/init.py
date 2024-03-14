@@ -4,7 +4,8 @@ pyrm.commands.init
 
 import os
 from argparse import Namespace
-from pyrm.utils import write_json, get_git_config
+from pyrm.utils import meta, get_git_config
+from pyrm.config.vars import PROJECT_JSON
 
 
 def init(args: Namespace) -> None:
@@ -15,9 +16,9 @@ def init(args: Namespace) -> None:
     """
     try:
         if args.y:
-            write_json("project.json", from_default())
+            meta.write(PROJECT_JSON, from_default())
         else:
-            write_json("project.json", from_prompts())
+            meta.write(PROJECT_JSON, from_prompts())
 
     except (KeyboardInterrupt, EOFError):
         print("\nexit init")
