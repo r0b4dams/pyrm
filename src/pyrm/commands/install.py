@@ -4,8 +4,9 @@ pyrm.commands.install
 
 import os
 import sys
+import tempfile
 from argparse import Namespace
-from pyrm.utils import meta, create_venv, pip_install
+from pyrm.utils import meta, run, create_venv, pip_install
 from pyrm.config.vars import VENV, PROJECT_JSON
 
 
@@ -15,7 +16,6 @@ def install(args: Namespace) -> None:
 
     Installs packages listed in project.json if no args given
     """
-
     if not os.path.exists(VENV):
         create_venv()
 
@@ -29,18 +29,42 @@ def install_from_args(pkgs: list[str]) -> None:
     """
     TODO: doc str
     """
-    requirements = pip_install(*pkgs)
+    doc = {}
 
-    if doc := meta.read(PROJECT_JSON):
-        doc["requirements"] = requirements
-        meta.write(PROJECT_JSON, doc)
-    else:
-        meta.write(PROJECT_JSON, {"requirements": requirements})
+    try:
+        doc = meta.read(PROJECT_JSON)
+    except FileNotFoundError:
+        pass
+
+    doc["requirements"] = pip_install(*pkgs)
+
+    meta.write(PROJECT_JSON, doc)
 
 
 def install_from_meta() -> None:
     """
     TODO: doc str
     """
-    if not os.path.exists(PROJECT_JSON):
-        sys.exit(f"Unable to install -> no args given and no {PROJECT_JSON} file found")
+    fd, tmp_req_path = tempfile.mkstemp()
+
+    try:
+        doc = meta.read(PROJECT_JSON)
+        reqs = doc["requirements"]
+
+        if not isinstance(reqs, dict):
+            raise TypeError(f"{PROJECT_JSON} requirements must be dict[str, str]")
+
+        # cast dict to str of package==version pairs separated by newlines
+        # same format as returned by 'pip freeze'
+        reqs_txt = "\n".join([f"{pkg}=={ver}" for pkg, ver in reqs.items()])
+
+        with os.fdopen(fd, "w") as tmp:
+            tmp.write(reqs_txt)
+
+        run(["pip", "install", "-r", tmp_req_path])
+
+    except (KeyError, TypeError) as e:
+        sys.exit(f"unable to install -> {e}")
+
+    finally:
+        os.remove(tmp_req_path)
