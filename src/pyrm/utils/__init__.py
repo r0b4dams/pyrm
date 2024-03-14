@@ -26,8 +26,7 @@ def pip_install(*pkgs: str) -> dict:
     Install packages
     """
     run(["python3", "-m", "pip", *pkgs])
-    requirements: dict = get_reqs()
-    return requirements
+    return get_reqs()
 
 
 def get_reqs() -> dict:
