@@ -3,9 +3,7 @@ pyrm.cli
 """
 
 from argparse import ArgumentParser
-
-from . import __version__
-from pyrm import commands
+from pyrm import __version__, commands
 
 
 def main():
@@ -29,4 +27,8 @@ def main():
 
     parser.parse_args()
     args = parser.parse_args()
-    args.func(args)
+
+    if hasattr(args, "func"):
+        args.func(args)
+    else:
+        parser.print_help()
