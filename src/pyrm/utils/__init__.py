@@ -1,33 +1,68 @@
+"""
+pyrm.utils
+"""
+
 import subprocess
+import json
 
 
-def run(commmand: list[str]) -> str:
-    return subprocess.check_output(commmand).decode().strip()
+def run(cmd: list[str]) -> str:
+    """
+    Helper to run a shell command
+
+    Returns stdout of command
+    """
+    return subprocess.check_output(cmd).decode().strip()
 
 
 def create_venv() -> None:
+    """
+    Create a virtual environment
+    """
     run(["python3", "-m", "venv", ".venv"])
 
 
-def get_requirements() -> str:
+def get_reqs() -> str:
     """
-    Cast pip freeze output to dict
+    Get packages installed to virtual environment
 
-    freeze outputs string of package==version pairs separated by newlines
+    Returns a str of package==version pairs separated by newlines
     """
-    reqs = run(["python3", "-m", "pip", "freeze"])
-    return dict([pkg.split("==") for pkg in reqs.splitlines()])
+    return run(["python3", "-m", "pip", "freeze"])
 
 
-def get_git_user() -> str:
-    return run(["git", "config", "user.name"])
+def get_reqs_dict() -> dict:
+    """
+    Returns a dict created from a requirements str
+    """
+    return dict([pkg.split("==") for pkg in get_reqs().splitlines()])
 
 
-def get_git_email() -> str:
-    return run(["git", "config", "user.email"])
+def get_git_config() -> tuple[str, str]:
+    """
+    Returns a tuple of the username and email from git config
+    """
+    user = run(["git", "config", "user.name"])
+    email = run(["git", "config", "user.email"])
+    return user, email
 
 
-def install(): ...
+def read_json(filepath: str) -> dict:
+    """
+    Read json to dict
+    """
+    with open(filepath, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if isinstance(doc, dict):
+        return doc
+
+    raise TypeError(f"{filepath} must be a dict")
 
 
-print(get_requirements())
+def write_json(filepath: str, data: dict) -> None:
+    """
+    Write dict to json
+    """
+    with open(filepath, "w+", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
