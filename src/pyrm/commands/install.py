@@ -5,7 +5,7 @@ pyrm.commands.install
 import os
 import sys
 from argparse import Namespace
-from pyrm.utils import create_venv
+from pyrm.utils import meta, create_venv, pip_install
 from pyrm.config.vars import VENV, PROJECT_JSON
 
 
@@ -16,7 +16,6 @@ def install(args: Namespace) -> None:
     Installs packages listed in project.json if no args given
     """
 
-    # does .venv exist? if not need to create
     if not os.path.exists(VENV):
         create_venv()
 
@@ -30,17 +29,18 @@ def install_from_args(pkgs: list[str]) -> None:
     """
     TODO: doc str
     """
-    args = " ".join(pkgs)
-    print(args)
+    requirements = pip_install(*pkgs)
 
-    # does project.json exist? if not create one
-    if not os.path.exists(PROJECT_JSON):
-        ...
+    if doc := meta.read(PROJECT_JSON):
+        doc["requirements"] = requirements
+        meta.write(PROJECT_JSON, doc)
+    else:
+        meta.write(PROJECT_JSON, {"requirements": requirements})
 
 
 def install_from_meta() -> None:
     """
     TODO: doc str
     """
-    if not os.path.exists(VENV):
+    if not os.path.exists(PROJECT_JSON):
         sys.exit(f"Unable to install -> no args given and no {PROJECT_JSON} file found")

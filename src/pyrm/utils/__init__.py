@@ -22,6 +22,9 @@ def create_venv() -> None:
 
 
 def pip_install(*pkgs: str) -> dict:
+    """
+    Install packages
+    """
     run(["python3", "-m", "pip", *pkgs])
     return get_reqs(as_dict=True)
 
