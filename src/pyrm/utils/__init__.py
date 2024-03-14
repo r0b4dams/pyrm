@@ -21,20 +21,19 @@ def create_venv() -> None:
     run(["python3", "-m", "venv", ".venv"])
 
 
-def get_reqs() -> str:
+def pip_install(*pkgs: str) -> dict:
+    run(["python3", "-m", "pip", *pkgs])
+    return get_reqs(as_dict=True)
+
+
+def get_reqs(as_dict: bool = True) -> str:
     """
     Get packages installed to virtual environment
 
     Returns a str of package==version pairs separated by newlines
     """
-    return run(["python3", "-m", "pip", "freeze"])
-
-
-def get_reqs_dict() -> dict:
-    """
-    Returns a dict created from a requirements str
-    """
-    return dict([pkg.split("==") for pkg in get_reqs().splitlines()])
+    output = run(["python3", "-m", "pip", "freeze"])
+    return dict([pkg.split("==") for pkg in output.splitlines()]) if as_dict else output
 
 
 def get_git_config() -> tuple[str, str]:
