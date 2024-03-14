@@ -1,4 +1,4 @@
-.PHONY: build install uninstall version clean upload_test
+.PHONY: build install uninstall version clean upload_testpypi
 
 APP_NAME := pyrm
 VERSION := $(shell python3 -c "from src import $(APP_NAME); print($(APP_NAME).__version__)")
