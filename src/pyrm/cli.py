@@ -25,6 +25,10 @@ def main():
     init.add_argument("-y", default=False, action="store_true")
     init.set_defaults(func=commands.init)
 
+    install = subparsers.add_parser("install")
+    install.add_argument("pkgs", nargs="*", default=None)
+    install.set_defaults(func=commands.install)
+
     parser.parse_args()
     args = parser.parse_args()
 
