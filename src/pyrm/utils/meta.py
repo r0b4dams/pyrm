@@ -20,7 +20,7 @@ def read(file: str) -> dict:
             return doc
 
     except (json.decoder.JSONDecodeError, TypeError) as e:
-        sys.exit(e)
+        sys.exit(str(e))
 
 
 def write(file: str, data: dict) -> None:
