@@ -3,6 +3,7 @@ pyrm.utils
 """
 
 import subprocess
+from pyrm.config.vars import PYTHON
 
 
 def run(cmd: list[str]) -> str:
@@ -25,7 +26,7 @@ def pip_install(*pkgs: str) -> dict:
     """
     Install packages
     """
-    run(["python3", "-m", "pip", *pkgs])
+    run([PYTHON, "-m", "pip", "install", *pkgs])
     return get_reqs()
 
 
@@ -35,8 +36,8 @@ def get_reqs() -> dict:
 
     Returns a str of package==version pairs separated by newlines
     """
-    requirements = run(["python3", "-m", "pip", "freeze"])
-    return dict([pkg.split("==") for pkg in requirements.splitlines()])
+    requirements = run([PYTHON, "-m", "pip", "freeze"])
+    return dict([pkg.split("==") for pkg in requirements.splitlines() if "==" in pkg])
 
 
 def get_git_config() -> tuple[str, str]:
