@@ -20,7 +20,7 @@ def main():
     subparsers = parser.add_subparsers()
 
     init = subparsers.add_parser("init")
-    init.add_argument("-y", action="store_false")
+    init.add_argument("-y", action="store_true")
     init.set_defaults(func=commands.init)
 
     install = subparsers.add_parser("install")
