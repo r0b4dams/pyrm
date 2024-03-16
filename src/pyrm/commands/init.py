@@ -4,13 +4,16 @@ pyrm.commands.init
 
 import os
 from argparse import Namespace
-from pyrm.utils import meta, get_git_config
+from pyrm.utils import meta, git
 from pyrm.config.vars import PROJECT_JSON
 
 
 def init(args: Namespace) -> None:
     """
-    TODO: doc str
+    Initialize a new project and generate a project.json file
+
+    Args:
+        args: Command line arguments from argparse
     """
     try:
         defaults = from_default()
@@ -22,9 +25,12 @@ def init(args: Namespace) -> None:
 
 def from_default() -> dict:
     """
-    TODO: doc str
+    Generate a base dict to serve as project.json shape
+
+    Returns:
+        dict with default project.json values
     """
-    user, email = get_git_config()
+    user, email = git.get_config()
     *_, current_folder_name = os.path.split(os.getcwd())
 
     return {
@@ -36,14 +42,20 @@ def from_default() -> dict:
     }
 
 
-def from_prompts(defaults: dict) -> dict:
+def from_prompts(default: dict) -> dict:
     """
-    TODO: doc str
+    Prompt user to override default project metadata
+
+    Args:
+        default: a base dict with default values
+
+    Returns:
+        dict with values set to user input
     """
-    data = {**defaults}
+    data = {**default}
     ignore = {"repository", "scripts"}
 
-    for key, value in defaults.items():
+    for key, value in data.items():
         if key in ignore:
             continue
 
