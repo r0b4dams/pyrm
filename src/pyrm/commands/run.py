@@ -17,7 +17,8 @@ def run(args) -> None:
         args: Command line arguments from argparse
 
     Raises:
-        SystemExit if no script given, virtual environment not found, or script not in project.json scripts
+        SystemExit if no script given, virtual environment not found,
+        or script not in project.json scripts
     """
     if not args.script:
         sys.exit("No script given")
