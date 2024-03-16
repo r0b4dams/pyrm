@@ -38,15 +38,9 @@ build: clean venv
 	@$(PY) -m build
 
 install: build
-	@$(PIP) install dist/$(APP_NAME)-$(VERSION).tar.gz
-
-install_global: build
 	@python3 -m pip install dist/$(APP_NAME)-$(VERSION).tar.gz
 
 uninstall:
-	@$(PIP) uninstall -y $(APP_NAME)
-
-uninstall_global:
 	@python3 -m pip uninstall -y $(APP_NAME)
 
 clean:
