@@ -44,10 +44,10 @@ install_global: build
 	@python3 -m pip install dist/$(APP_NAME)-$(VERSION).tar.gz
 
 uninstall:
-	@$(PIP) uninstall $(APP_NAME)
+	@$(PIP) uninstall -y $(APP_NAME)
 
 uninstall_global:
-	@python3 -m pip uninstall $(APP_NAME)
+	@python3 -m pip uninstall -y $(APP_NAME)
 
 clean:
 	@find . \
