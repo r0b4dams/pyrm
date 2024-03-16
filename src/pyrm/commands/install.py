@@ -61,10 +61,10 @@ def install_from_meta() -> None:
         with os.fdopen(fd, "w") as tmp:
             tmp.write(reqs_txt)
 
-        run(["pip", "install", "-r", tmp_req_path])
+        print(run(["pip", "install", "-r", tmp_req_path]))
 
-    except (KeyError, TypeError) as e:
-        sys.exit(f"unable to install -> {e}")
+    except (KeyError, TypeError, FileNotFoundError) as e:
+        sys.exit(f"Unable to install -> {e}")
 
     finally:
         os.remove(tmp_req_path)
