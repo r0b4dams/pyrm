@@ -10,7 +10,7 @@ from pyrm.config.vars import PYTHON, VENV, PROJECT_JSON
 
 def uninstall(args: Namespace) -> None:
     """
-    Uninstalls the given packages from the virtual environment
+    TODO: doc str
     """
     if not os.path.exists(VENV):
         sys.exit(f"{VENV} not found")

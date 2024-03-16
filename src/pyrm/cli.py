@@ -17,12 +17,10 @@ def main():
         "-v", "--version", action="version", version=f"%(prog)s {__version__}"
     )
 
-    # commands
-
     subparsers = parser.add_subparsers()
 
     init = subparsers.add_parser("init")
-    init.add_argument("-y", default=False, action="store_true")
+    init.add_argument("-y", action="store_false")
     init.set_defaults(func=commands.init)
 
     install = subparsers.add_parser("install")
@@ -34,7 +32,7 @@ def main():
     uninstall.set_defaults(func=commands.uninstall)
 
     run = subparsers.add_parser("run")
-    run.add_argument("script", nargs='?')
+    run.add_argument("script", nargs="?")
     run.set_defaults(func=commands.run)
 
     parser.parse_args()

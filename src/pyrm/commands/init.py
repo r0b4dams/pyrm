@@ -10,9 +10,7 @@ from pyrm.config.vars import PROJECT_JSON
 
 def init(args: Namespace) -> None:
     """
-    Initialize a new project
-
-    Generates a project.json file to hold metadata
+    TODO: doc str
     """
     try:
         defaults = from_default()
@@ -24,7 +22,7 @@ def init(args: Namespace) -> None:
 
 def from_default() -> dict:
     """
-    Returns dict with default metadata
+    TODO: doc str
     """
     user, email = get_git_config()
     *_, current_folder_name = os.path.split(os.getcwd())
@@ -40,9 +38,7 @@ def from_default() -> dict:
 
 def from_prompts(defaults: dict) -> dict:
     """
-    Prompt user for values to overwrite defaults
-
-    Returns dict with project metadata
+    TODO: doc str
     """
     data = {**defaults}
     ignore = {"repository", "scripts"}

@@ -12,12 +12,10 @@ from pyrm.config.vars import VENV, PROJECT_JSON
 
 def install(args: Namespace) -> None:
     """
-    Installs the given packages to the virtual environment
-
-    Installs packages listed in project.json if no args given
+    TODO: doc str
     """
     if not os.path.exists(VENV):
-        create_venv()
+        create_venv(VENV)
 
     if len(args.pkgs) > 0:
         install_from_args(args.pkgs)
@@ -63,7 +61,7 @@ def install_from_meta() -> None:
 
         print(run(["pip", "install", "-r", tmp_req_path]))
 
-    except (KeyError, TypeError, FileNotFoundError) as e:
+    except (FileNotFoundError, KeyError, TypeError) as e:
         sys.exit(f"Unable to install -> {e}")
 
     finally:

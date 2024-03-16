@@ -8,23 +8,21 @@ from ..config.vars import PYTHON
 
 def run(cmd: list[str]) -> str:
     """
-    Helper to run a shell command
-
-    Returns stdout of command
+    TODO: doc str
     """
     return subprocess.check_output(cmd).decode().strip()
 
 
-def create_venv() -> None:
+def create_venv(venv: str) -> None:
     """
-    Create a virtual environment
+    TODO: doc str
     """
-    run(["python3", "-m", "venv", ".venv"])
+    run(["python3", "-m", "venv", venv])
 
 
 def pip_install(*pkgs: str) -> dict:
     """
-    Install packages
+    TODO: doc str
     """
     print(run([PYTHON, "-m", "pip", "install", *pkgs]))
     return get_reqs()
@@ -32,9 +30,7 @@ def pip_install(*pkgs: str) -> dict:
 
 def get_reqs() -> dict:
     """
-    Get packages installed to virtual environment
-
-    Returns a str of package==version pairs separated by newlines
+    TODO: doc str
     """
     requirements = run([PYTHON, "-m", "pip", "freeze"])
     return dict([pkg.split("==") for pkg in requirements.splitlines() if "==" in pkg])
@@ -42,7 +38,7 @@ def get_reqs() -> dict:
 
 def get_git_config() -> tuple[str, str]:
     """
-    Returns a tuple of the username and email from git config
+    TODO: doc str
     """
     user = run(["git", "config", "user.name"])
     email = run(["git", "config", "user.email"])
