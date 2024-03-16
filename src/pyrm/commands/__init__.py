@@ -1,7 +1,8 @@
-"""pyrob.commands"""
+"""
+pyrm.commands
+"""
 
-from .clean import clean
 from .init import init
 from .install import install
-from .run import run
 from .uninstall import uninstall
+from .run import run
