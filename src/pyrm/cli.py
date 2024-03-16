@@ -33,6 +33,10 @@ def main():
     uninstall.add_argument("pkgs", nargs="+")
     uninstall.set_defaults(func=commands.uninstall)
 
+    run = subparsers.add_parser("run")
+    run.add_argument("script", nargs='?')
+    run.set_defaults(func=commands.run)
+
     parser.parse_args()
     args = parser.parse_args()
 
