@@ -15,11 +15,9 @@ def init(args: Namespace) -> None:
     Generates a project.json file to hold metadata
     """
     try:
-        if args.y:
-            meta.write(PROJECT_JSON, from_default())
-        else:
-            meta.write(PROJECT_JSON, from_prompts())
-
+        defaults = from_default()
+        data = defaults if args.y else from_prompts(defaults)
+        meta.write(PROJECT_JSON, data)
     except (KeyboardInterrupt, EOFError):
         print("\nexit init")
 
@@ -40,16 +38,16 @@ def from_default() -> dict:
     }
 
 
-def from_prompts() -> dict:
+def from_prompts(defaults: dict) -> dict:
     """
     Prompt user for values to overwrite defaults
 
     Returns dict with project metadata
     """
-    data = from_default()
+    data = {**defaults}
     ignore = {"repository", "scripts"}
 
-    for key, value in data.items():
+    for key, value in defaults.items():
         if key in ignore:
             continue
 
