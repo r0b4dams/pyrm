@@ -23,8 +23,8 @@ def test_read_json_raise():
     with os.fdopen(fd, "w") as tmp:
         json.dump(test, tmp)
 
-    with pytest.raises(TypeError) as excinfo:
+    with pytest.raises(SystemExit) as excinfo:
         meta.read(test_path)
 
-    assert excinfo.type is TypeError
+    assert excinfo.type is SystemExit
     os.remove(test_path)
