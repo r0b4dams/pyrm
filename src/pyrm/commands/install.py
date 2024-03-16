@@ -6,13 +6,16 @@ import os
 import sys
 import tempfile
 from argparse import Namespace
-from pyrm.utils import meta, run, create_venv, pip_install
+from pyrm.utils import create_venv, meta, pip
 from pyrm.config.vars import VENV, PROJECT_JSON
 
 
 def install(args: Namespace) -> None:
     """
-    TODO: doc str
+    Install dependencies to virtual environment
+
+    Args:
+        args: Command line arguments from argparse
     """
     if not os.path.exists(VENV):
         create_venv(VENV)
@@ -25,7 +28,11 @@ def install(args: Namespace) -> None:
 
 def install_from_args(pkgs: list[str]) -> None:
     """
-    TODO: doc str
+    Install packages from given sequence and updates project.json
+    Creates project.json file if not exists
+
+    Args:
+        pkgs: List of packages to install to virtual environment
     """
     doc = {}
 
@@ -34,14 +41,19 @@ def install_from_args(pkgs: list[str]) -> None:
     except FileNotFoundError:
         pass
 
-    doc["requirements"] = pip_install(*pkgs)
+    pip.install_from_args(*pkgs)
+    doc["requirements"] = pip.requirements()
 
     meta.write(PROJECT_JSON, doc)
 
 
 def install_from_meta() -> None:
     """
-    TODO: doc str
+    Install packages from requirements in project.json
+
+    Raises:
+        TypeError: if project.json parsing does not return dict
+        SystemExit: if project.json not found, is a list, or requirements key not in project.json
     """
     fd, tmp_req_path = tempfile.mkstemp()
 
@@ -59,7 +71,7 @@ def install_from_meta() -> None:
         with os.fdopen(fd, "w") as tmp:
             tmp.write(reqs_txt)
 
-        print(run(["pip", "install", "-r", tmp_req_path]))
+        pip.install_from_reqs(tmp_req_path)
 
     except (FileNotFoundError, KeyError, TypeError) as e:
         sys.exit(f"Unable to install -> {e}")
