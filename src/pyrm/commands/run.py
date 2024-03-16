@@ -10,7 +10,11 @@ from pyrm.config.vars import VENV, PROJECT_JSON
 
 def run(args) -> None:
     """
-    TODO: doc str
+    Runs the given script.
+    The script must have a key of the same name in package.json
+
+    Args:
+        args: Command line arguments from argparse
     """
     if not args.script:
         sys.exit("No script given")
