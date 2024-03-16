@@ -3,7 +3,7 @@ pyrm.utils
 """
 
 import subprocess
-from pyrm.config.vars import PYTHON
+from ..config.vars import PYTHON
 
 
 def run(cmd: list[str]) -> str:
