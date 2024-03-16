@@ -12,7 +12,6 @@ def uninstall(args: Namespace) -> None:
     """
     Uninstalls the given packages from the virtual environment
     """
-
     if not os.path.exists(VENV):
         sys.exit(f"{VENV} not found")
 
