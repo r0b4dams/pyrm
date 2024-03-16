@@ -26,8 +26,12 @@ def main():
     init.set_defaults(func=commands.init)
 
     install = subparsers.add_parser("install")
-    install.add_argument("pkgs", nargs="*", default=None)
+    install.add_argument("pkgs", nargs="*")
     install.set_defaults(func=commands.install)
+
+    uninstall = subparsers.add_parser("uninstall")
+    uninstall.add_argument("pkgs", nargs="+")
+    uninstall.set_defaults(func=commands.uninstall)
 
     parser.parse_args()
     args = parser.parse_args()
