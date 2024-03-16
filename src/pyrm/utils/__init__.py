@@ -26,7 +26,7 @@ def pip_install(*pkgs: str) -> dict:
     """
     Install packages
     """
-    run([PYTHON, "-m", "pip", "install", *pkgs])
+    print(run([PYTHON, "-m", "pip", "install", *pkgs]))
     return get_reqs()
 
 
