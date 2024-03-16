@@ -3,43 +3,23 @@ pyrm.utils
 """
 
 import subprocess
-from ..config.vars import PYTHON
 
 
 def run(cmd: list[str]) -> str:
     """
-    TODO: doc str
+    Run the given command
+
+    Returns:
+        stdout from subprocess
     """
     return subprocess.check_output(cmd).decode().strip()
 
 
 def create_venv(venv: str) -> None:
     """
-    TODO: doc str
+    Create a virtual environment using the venv module
+
+    Args:
+        venv: path to virtual environment directory
     """
     run(["python3", "-m", "venv", venv])
-
-
-def pip_install(*pkgs: str) -> dict:
-    """
-    TODO: doc str
-    """
-    print(run([PYTHON, "-m", "pip", "install", *pkgs]))
-    return get_reqs()
-
-
-def get_reqs() -> dict:
-    """
-    TODO: doc str
-    """
-    requirements = run([PYTHON, "-m", "pip", "freeze"])
-    return dict([pkg.split("==") for pkg in requirements.splitlines() if "==" in pkg])
-
-
-def get_git_config() -> tuple[str, str]:
-    """
-    TODO: doc str
-    """
-    user = run(["git", "config", "user.name"])
-    email = run(["git", "config", "user.email"])
-    return user, email
