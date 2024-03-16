@@ -8,7 +8,17 @@ import json
 
 def read(file: str) -> dict:
     """
-    TODO: doc str
+    Read the given as a json doc
+
+    Args:
+        file: filepath to read
+
+    Raises:
+        JSONDecodeError: if file cannot be parsed as JSON
+        TypeError: if parsing does not return dict
+
+    Returns:
+        dict cast from given json doc
     """
     try:
         with open(file, "r", encoding="utf-8") as f:
@@ -25,7 +35,11 @@ def read(file: str) -> dict:
 
 def write(file: str, data: dict) -> None:
     """
-    TODO: doc str
+    Write the given doc to the given path as JSON
+
+    Args:
+        file: filepath to write to
+        data: dict to write as JSON
     """
     with open(file, "w+", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
