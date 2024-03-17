@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 
-delete_local_tags
+main() {
+    delete_local_tags
+}
 
 delete_local_tags() {
     git tag -d $(git tag -l)
@@ -16,3 +18,5 @@ delete_all_tags() {
     delete_remote_tags
     delete_local_tags
 }
+
+main
