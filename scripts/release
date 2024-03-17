@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-git checkout main
-git pull
-
 VERSION=$(python3 -c "from src.pyrob import __version__; print(__version__)")
 TAG=v$VERSION
 
