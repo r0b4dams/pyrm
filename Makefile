@@ -14,7 +14,7 @@ dev: venv
 
 venv:
 	@python3 -m venv $(VENV)
-	@$(PIP) install --upgrade pip build black mypy pylint pytest > /dev/null
+	@$(PIP) install --upgrade pip build black mypy pylint pytest
 	@chmod +x $(VENV)/bin/activate
 
 lint: .venv
