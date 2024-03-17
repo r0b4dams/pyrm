@@ -1,4 +1,4 @@
-.PHONY: dev venv lint format typecheck test build install uninstall version clean upload_testpypi
+.PHONY: dev venv lint format typecheck test build install uninstall version clean upload_testpypi release
 
 APP_NAME := pyrob
 VERSION := $(shell python3 -c "from src import $(APP_NAME); print($(APP_NAME).__version__)")
@@ -58,3 +58,7 @@ upload_testpypi: build
 
 install_from_testpypi: .venv
 	@pip install -i https://test.pypi.org/simple/ $(APP_NAME)
+
+release:
+	@chmod +x scripts/release
+	@scripts/release

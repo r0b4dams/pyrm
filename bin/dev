@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # run bin/dev to invoke the cli without installing
-python3 -c "from src.pyrm.cli import main; main()" $@
+python3 -c "from src.pyrob.cli import main; main()" $@
