@@ -1,9 +1,9 @@
 """
-pyrm.cli
+pyrob.cli
 """
 
 from argparse import ArgumentParser
-from pyrob import __version__, commands
+from pyrob import commands, __pkg_name__, __version__
 
 
 def main():
@@ -11,7 +11,8 @@ def main():
     entrypoint
     """
     parser = ArgumentParser(
-        prog="pyrm", description="A CLI to manage dependencies in a Python project"
+        prog=__pkg_name__,
+        description="A CLI to manage dependencies in a Python project",
     )
     parser.add_argument(
         "-v", "--version", action="version", version=f"%(prog)s {__version__}"
