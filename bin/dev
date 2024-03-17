@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
 # run bin/dev to invoke the cli without installing
-# works for ad-hoc testing but will need updating if packages are used
 python3 -c "from src.pyrm.cli import main; main()" $@
