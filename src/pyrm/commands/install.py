@@ -28,8 +28,8 @@ def install(args: Namespace) -> None:
 
 def install_from_args(pkgs: list[str]) -> None:
     """
-    Install packages from given sequence and updates project.json
-    Creates project.json file if not exists
+    Install packages from given sequence and updates project.json.
+    Creates project.json file if not exists.
 
     Args:
         pkgs: List of packages to install to virtual environment
@@ -49,7 +49,7 @@ def install_from_args(pkgs: list[str]) -> None:
 
 def install_from_meta() -> None:
     """
-    Install packages from requirements in project.json
+    Install packages from requirements in project.json.
 
     Raises:
         TypeError: if project.json parsing does not return dict

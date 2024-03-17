@@ -11,7 +11,7 @@ from pyrm.config.vars import VENV, PROJECT_JSON
 def run(args) -> None:
     """
     Runs the given script.
-    The script must have a key of the same name in project.json
+    The script must have a key of the same name in project.json.
 
     Args:
         args: Command line arguments from argparse

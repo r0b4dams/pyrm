@@ -10,22 +10,23 @@ from pyrm.config.vars import PROJECT_JSON
 
 def init(args: Namespace) -> None:
     """
-    Initialize a new project and generate a project.json file
+    Initialize a new project and generate a project.json file.
 
     Args:
         args: Command line arguments from argparse
     """
     try:
-        defaults = from_default()
-        data = defaults if args.y else from_prompts(defaults)
+        base = from_default()
+        data = base if args.y else with_prompts(base)
         meta.write(PROJECT_JSON, data)
+
     except (KeyboardInterrupt, EOFError):
         print("\nexit init")
 
 
 def from_default() -> dict:
     """
-    Generate a base dict to serve as project.json shape
+    Generate a base dict to serve as project.json shape.
 
     Returns:
         dict with default project.json values
@@ -42,12 +43,12 @@ def from_default() -> dict:
     }
 
 
-def from_prompts(default: dict) -> dict:
+def with_prompts(default: dict) -> dict:
     """
     Prompt user to override default project metadata
 
     Args:
-        default: a base dict with default values
+        default: a base dict with default values.
 
     Returns:
         dict with values set to user input

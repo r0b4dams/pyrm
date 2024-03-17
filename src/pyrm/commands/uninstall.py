@@ -10,7 +10,7 @@ from pyrm.config.vars import VENV, PROJECT_JSON
 
 def uninstall(args: Namespace) -> None:
     """
-    Uninstalls packages from virtual environment
+    Uninstall packages from virtual environment.
 
     Args:
         args: Command line arguments from argparse

@@ -8,7 +8,7 @@ import json
 
 def read(file: str) -> dict:
     """
-    Read the given as a json doc
+    Read the given as a json doc.
 
     Args:
         file: filepath to read

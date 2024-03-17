@@ -8,7 +8,7 @@ from ..config.vars import PYTHON
 
 def install_from_reqs(path: str) -> None:
     """
-    Install packages to virtual environment from a requirements file
+    Install packages to virtual environment from a requirements file.
 
     Args:
         path: path to requirements file
@@ -18,7 +18,7 @@ def install_from_reqs(path: str) -> None:
 
 def install_from_args(*pkgs: str) -> None:
     """
-    Install given sequence of packages to virtual environment
+    Install given sequence of packages to virtual environment.
 
     Args:
         pkgs: sequence of packages to uninstall
@@ -28,7 +28,7 @@ def install_from_args(*pkgs: str) -> None:
 
 def uninstall(*pkgs: str) -> None:
     """
-    Uninstall given sequence of packages from virtual environment
+    Uninstall given sequence of packages from virtual environment.
 
     Args:
         pkgs: sequence of packages to uninstall
@@ -38,7 +38,7 @@ def uninstall(*pkgs: str) -> None:
 
 def requirements() -> dict:
     """
-    Cast pip freeze result to dict for package.json
+    Cast pip freeze result to dict for package.json.
 
     Returns:
         A dict containing packages and their versions
