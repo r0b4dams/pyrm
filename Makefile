@@ -49,17 +49,6 @@ clean:
 	-o -name "*.egg-info" \
 	\) -exec rm -rf {} +
 
-# Note: add #HOME/.pypirc to skip auth prompt
-# https://packaging.python.org/en/latest/guides/using-testpypi/#setting-up-testpypi-in-pypirc
-upload_testpypi: build
-	@$(PIP) install --upgrade twine
-	@twine check dist/*
-	@twine upload -r testpypi dist/*
-	@twine upload dist/*
-
-install_from_testpypi: .venv
-	@pip install -i https://test.pypi.org/simple/ $(APP_NAME)
-
 release:
 	@chmod +x scripts/release
 	@scripts/release
