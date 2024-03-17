@@ -34,7 +34,7 @@ A Makefile is included with targets to handle dev actions
 | `make lint`      | Lint using `pylint`                                  |
 | `make format`    | Format using `black`                                 |
 | `make typecheck` | Typecheck using `mypy`                               |
-| `make build`     | Generate the tarball and wheel for publishing        |
+| `make build`     | Build a binary wheel and a source tarball            |
 | `make install`   | Install the package globally                         |
 | `make uninstall` | Uninstall package                                    |
 | `make clean`     | Delete virtual environment and build/cache artifacts |
