@@ -23,7 +23,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install
+        run: make venv
+
       - name: Test
-        run: |
-          make venv
-          make test
+        run: make test

@@ -24,7 +24,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install
+        run: make venv
+
       - name: Typecheck
-        run: |
-          make venv
-          make typecheck
+        run: make typecheck
