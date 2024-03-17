@@ -4,8 +4,8 @@ pyrm.commands.run
 
 import os
 import sys
-from pyrm.utils import meta, create_venv
-from pyrm.config.vars import VENV, PROJECT_JSON
+from pyrob.utils import meta, create_venv
+from pyrob.config.vars import VENV, PROJECT_JSON
 
 
 def run(args) -> None:

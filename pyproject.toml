@@ -3,12 +3,12 @@ authors = [{name = "Robert Adams", email = "r0b4dams@gmail.com"}]
 description = "A CLI to manage dependencies in a Python project"
 dynamic = ["version"]
 license = {file = "LICENSE"}
-name = "pyrm"
+name = "pyrob"
 readme = "README.md"
 requires-python = ">=3.8"
 
 [project.scripts]
-pyrm = "pyrm.cli:main"
+pyrm = "pyrob.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/r0b4dams/pyrob"
@@ -20,4 +20,4 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools >= 61.0"]
 
 [tool.setuptools.dynamic]
-version = {attr = "pyrm.__version__"}
+version = {attr = "pyrob.__version__"}

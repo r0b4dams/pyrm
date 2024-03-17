@@ -3,7 +3,7 @@ pyrm.cli
 """
 
 from argparse import ArgumentParser
-from pyrm import __version__, commands
+from pyrob import __version__, commands
 
 
 def main():

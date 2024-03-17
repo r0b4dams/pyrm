@@ -4,8 +4,8 @@ import os
 import sys
 import json
 from argparse import Namespace
-from pyrm.utils import meta, pip
-from pyrm.config.vars import VENV, PROJECT_JSON
+from pyrob.utils import meta, pip
+from pyrob.config.vars import VENV, PROJECT_JSON
 
 
 def uninstall(args: Namespace) -> None:

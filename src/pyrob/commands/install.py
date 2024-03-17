@@ -6,8 +6,8 @@ import os
 import sys
 import tempfile
 from argparse import Namespace
-from pyrm.utils import create_venv, meta, pip
-from pyrm.config.vars import VENV, PROJECT_JSON
+from pyrob.utils import create_venv, meta, pip
+from pyrob.config.vars import VENV, PROJECT_JSON
 
 
 def install(args: Namespace) -> None:

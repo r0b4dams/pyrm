@@ -2,7 +2,7 @@ import os
 import tempfile
 import json
 import pytest
-from src.pyrm.utils import meta
+from src.pyrob.utils import meta
 
 
 def test_read_json():

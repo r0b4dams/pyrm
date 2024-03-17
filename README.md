@@ -1,4 +1,4 @@
-# pyrm
+# pyrob
 
 A simple CLI to help manage project package requirements
 
@@ -11,7 +11,7 @@ A simple CLI to help manage project package requirements
 ## Installation
 
 ```bash
-pip install pyrm
+pip install pyrob
 ```
 
 ## Usage

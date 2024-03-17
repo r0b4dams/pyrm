@@ -1,6 +1,6 @@
 .PHONY: build install uninstall version clean upload_testpypi
 
-APP_NAME := pyrm
+APP_NAME := pyrob
 VERSION := $(shell python3 -c "from src import $(APP_NAME); print($(APP_NAME).__version__)")
 
 VENV := .venv

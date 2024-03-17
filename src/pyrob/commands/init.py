@@ -4,8 +4,8 @@ pyrm.commands.init
 
 import os
 from argparse import Namespace
-from pyrm.utils import meta, git
-from pyrm.config.vars import PROJECT_JSON
+from pyrob.utils import meta, git
+from pyrob.config.vars import PROJECT_JSON
 
 
 def init(args: Namespace) -> None:
