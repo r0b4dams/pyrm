@@ -1,13 +1,14 @@
 name: Publish & Release
 
-# on:
-#   workflow_dispatch:
-#   push:
-#     tags:
-#       - v*
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
+    name: Build a binary wheel and a source tarball
     runs-on: ubuntu-latest
 
     strategy:
@@ -35,6 +36,7 @@ jobs:
           path: dist/
 
   release:
+    name: Create GitHub release
     needs: [build]
     runs-on: ubuntu-latest
 
@@ -56,7 +58,7 @@ jobs:
             ./dist/*.tar.gz
             ./dist/*.whl
 
-      - name: Create GitHub Release
+      - name: Create GitHub release
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
@@ -74,6 +76,7 @@ jobs:
           --repo '${{ github.repository }}'
 
   publish:
+    name: Publish to PyPI
     needs: [build]
     runs-on: ubuntu-latest
 
