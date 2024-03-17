@@ -1,3 +1,3 @@
 """
-pyrm.config
+pyrob.config
 """

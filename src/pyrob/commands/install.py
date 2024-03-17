@@ -1,5 +1,5 @@
 """
-pyrm.commands.install
+pyrob.commands.install
 """
 
 import os

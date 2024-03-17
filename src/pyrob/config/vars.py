@@ -1,5 +1,5 @@
 """
-pyrm.config.vars
+pyrob.config.vars
 """
 
 VENV = ".venv"

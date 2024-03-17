@@ -1,5 +1,5 @@
 """
-pyrm.utils.pip
+pyrob.utils.pip
 """
 
 from . import run

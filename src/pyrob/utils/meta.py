@@ -1,5 +1,5 @@
 """
-pyrm.utils.meta
+pyrob.utils.meta
 """
 
 import sys
