@@ -39,6 +39,7 @@ uninstall:
 	@python3 -m pip uninstall -y $(APP_NAME)
 
 clean:
+	@scripts/clear_tags
 	@find . \
 	\( -name .venv \
 	-o -name dist \
