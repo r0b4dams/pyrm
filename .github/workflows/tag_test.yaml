@@ -1,0 +1,14 @@
+name: test tag trigger
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      run: echo {{github.ref_name}}
