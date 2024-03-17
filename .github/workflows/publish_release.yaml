@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build a binary wheel and a source tarball
+    name: Build wheel & tarball
     runs-on: ubuntu-latest
 
     strategy:
