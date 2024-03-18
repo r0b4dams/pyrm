@@ -27,14 +27,17 @@ pip install pyrob
 
 A Makefile is included with targets to handle dev actions
 
-| Command          | Description                                          |
-| ---------------- | ---------------------------------------------------- |
-| `make venv`      | Create a virtual environment with `venv` module      |
-| `make test`      | Run unit tests with `pytest`                         |
-| `make lint`      | Lint using `pylint`                                  |
-| `make format`    | Format using `black`                                 |
-| `make typecheck` | Typecheck using `mypy`                               |
-| `make build`     | Build a binary wheel and a source tarball            |
-| `make install`   | Install the package globally                         |
-| `make uninstall` | Uninstall package                                    |
-| `make clean`     | Delete virtual environment and build/cache artifacts |
+| Command                 | Description                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| `make venv`             | Create a virtual environment with `venv` module              |
+| `make test`             | Run unit tests with `pytest`                                 |
+| `make lint`             | Lint using `pylint`                                          |
+| `make format`           | Format using `black`                                         |
+| `make typecheck`        | Typecheck using `mypy`                                       |
+| `make build`            | Build a binary wheel and a source tarball                    |
+| `make release`          | Push a new tag, create a GitHub release, and publish to PyPI |
+| `make install`          | Install the package globally                                 |
+| `make uninstall`        | Uninstall package globally                                   |
+| `make clean`            | Delete virtual environment and build/cache artifacts         |
+| `make testpypi`         | Publishes current build to TestPyPI                          |
+| `make install_testpypi` | Install from TestPyPI                                        |
