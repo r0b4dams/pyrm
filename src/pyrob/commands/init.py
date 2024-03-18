@@ -32,7 +32,7 @@ def from_default() -> dict:
         dict with default project.json values
     """
     user, email = git.get_config()
-    *_, current_folder_name = os.path.split(os.getcwd())
+    _, current_folder_name = os.path.split(os.getcwd())
 
     return {
         "name": current_folder_name,
