@@ -1,9 +1,12 @@
 import os
+import shutil
 from src.pyrob.utils import create_venv
-from src.pyrob.config.vars import VENV
 
 
 def test_create_env():
-    create_venv(VENV)
-    assert os.path.exists(VENV)
-    assert os.path.exists(f"{VENV}/bin/python3")
+    _, current_folder_name = os.path.split(os.getcwd())
+    test_path = f"{current_folder_name}/test_venv"
+    create_venv(test_path)
+    assert os.path.exists(test_path)
+    assert os.path.exists(f"{test_path}/bin/python3")
+    shutil.rmtree(test_path)
