@@ -13,5 +13,4 @@ def test_run_subprocess(mocker):
 def test_run_output():
     string = "Hello, World!"
     command = ["echo", string]
-    output = run(command)
-    assert output == string
+    assert run(command) == string
