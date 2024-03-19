@@ -4,7 +4,8 @@ from src.pyrob.utils import run
 
 
 def test_run_subprocess(mocker):
-    command = ["echo", "Hello, World!"]
+    string = "Hello, World!"
+    command = ["echo", string]
     mocker.patch("subprocess.check_output")
     run(command)
     subprocess.check_output.assert_called_once_with(command)
