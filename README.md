@@ -18,10 +18,10 @@ pip install pyrob
 
 | Command                     | Description                                           |
 | --------------------------- | ----------------------------------------------------- |
-| `pyrm init [-y]`            | Initialize a new project                              |
-| `pyrm run [script]`         | Run the given command defined in project.json         |
-| `pyrm install [pkgs ...]`   | Install the given packages to virtual environment     |
-| `pyrm uninstall [pkgs ...]` | Uninstall the given packages from virtual environment |
+| `pyrob init [-y]`            | Initialize a new project                              |
+| `pyrob run [script]`         | Run the given command defined in project.json         |
+| `pyrob install [pkgs ...]`   | Install the given packages to virtual environment     |
+| `pyrob uninstall [pkgs ...]` | Uninstall the given packages from virtual environment |
 
 ## Development
 
