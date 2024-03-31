@@ -3,9 +3,12 @@ pyrob.commands.init
 """
 
 import os
+import shutil
 from argparse import Namespace
-from pyrob.utils import meta, git
-from pyrob.config.vars import PROJECT_JSON
+import pyrob
+from pyrob.utils import meta, git, create_venv
+from pyrob.commands.install import install_from_args
+from pyrob.config.vars import PROJECT_JSON, VENV
 
 
 def init(args: Namespace) -> None:
@@ -18,7 +21,20 @@ def init(args: Namespace) -> None:
     try:
         base = from_default()
         data = base if args.y else with_prompts(base)
+
+        shutil.copytree(
+            src="".join([os.path.dirname(pyrob.__file__), "/", "__template__"]),
+            dst=os.getcwd(),
+            dirs_exist_ok=True,
+            ignore=shutil.ignore_patterns("__pycache__*"),
+        )
+
         meta.write(PROJECT_JSON, data)
+        print("Creating virtual environment...")
+        create_venv(VENV)
+        print("Installing packages...")
+        install_from_args(["black", "pylint", "mypy", "pytest"])
+        print("Project initialized! Happy hacking!")
 
     except (KeyboardInterrupt, EOFError):
         print("\nexit init")
@@ -39,7 +55,12 @@ def from_default() -> dict:
         "version": "0.0.1",
         "author": f"{user} <{email}>",
         "description": "A new project!",
-        "scripts": {"foo": "echo foo bar baz"},
+        "scripts": {
+            "lint": "pylint src",
+            "test": "pytest tests -v",
+            "typecheck": "mypy src",
+            "format": "black src",
+        },
     }
 
 
