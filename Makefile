@@ -8,7 +8,7 @@ PY := $(VENV)/bin/python3
 PIP := $(PY) -m pip
 
 dev: venv
-	@echo "$(APP_NAME) $(VERSION)"
+	@echo "\n$(APP_NAME) $(VERSION)"
 	@echo "$(VENV) created. Run the following command to activate:"
 	@echo "source $(VENV)/bin/activate" 
 
@@ -18,7 +18,7 @@ venv:
 	@chmod +x $(VENV)/bin/activate
 
 lint: .venv
-	@$(PY) -m pylint src --ignore-paths src/pyrm/__templates__
+	@$(PY) -m pylint src --ignore-paths src/pyrob/__template__
 
 format: .venv
 	@$(PY) -m black src
