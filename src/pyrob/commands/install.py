@@ -43,8 +43,8 @@ def install_from_args(pkgs: list[str]) -> None:
 
     pip.install_from_args(*pkgs)
     doc["requirements"] = pip.requirements()
-
     meta.write(PROJECT_JSON, doc)
+    print("Installed:", *pkgs)
 
 
 def install_from_meta() -> None:
