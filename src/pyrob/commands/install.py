@@ -20,6 +20,8 @@ def install(args: Namespace) -> None:
     if not os.path.exists(VENV):
         create_venv(VENV)
 
+    print("Installing packages...")
+
     if len(args.pkgs) > 0:
         install_from_args(args.pkgs)
     else:
