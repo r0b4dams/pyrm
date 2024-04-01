@@ -38,7 +38,7 @@ def uninstall(*pkgs: str) -> None:
 
 def requirements() -> dict:
     """
-    Cast pip freeze result to dict for package.json.
+    Cast pip freeze result to dict for project.json.
 
     Returns:
         A dict containing packages and their versions
