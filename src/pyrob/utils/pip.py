@@ -2,8 +2,8 @@
 pyrob.utils.pip
 """
 
-from . import run
-from ..config.vars import PYTHON
+from pyrob.config.vars import PYTHON
+from .run import run
 
 
 def install_from_reqs(path: str) -> None:
