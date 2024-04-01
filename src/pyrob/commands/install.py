@@ -6,7 +6,7 @@ import os
 import sys
 import tempfile
 from argparse import Namespace
-from pyrob.utils import create_venv, meta, pip
+from pyrob.utils import project, meta, pip
 from pyrob.config.vars import VENV, PROJECT_JSON
 
 
@@ -18,7 +18,7 @@ def install(args: Namespace) -> None:
         args: Command line arguments from argparse
     """
     if not os.path.exists(VENV):
-        create_venv(VENV)
+        project.make_venv(VENV)
 
     print("Installing packages...")
 
