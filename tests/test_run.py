@@ -1,6 +1,6 @@
 import subprocess
 from pytest_mock import mocker
-from src.pyrob.utils import run
+from src.pyrob.utils.run import run
 
 
 def test_run_subprocess(mocker):
