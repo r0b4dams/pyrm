@@ -4,6 +4,7 @@ pyrob.commands.run
 
 import os
 import sys
+import subprocess
 from pyrob.utils import meta, project
 from pyrob.config.vars import VENV, PROJECT_JSON
 
@@ -28,6 +29,7 @@ def run(args) -> None:
 
     try:
         script = meta.read(PROJECT_JSON)["scripts"][args.script]
-        os.system(script)
+        cmd = ["bash", "-c", f"source .venv/bin/activate && {script}"]
+        subprocess.run(cmd, check=False)
     except (FileNotFoundError, KeyError, TypeError) as e:
         sys.exit(f"Unable to run command -> {e}")
