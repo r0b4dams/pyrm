@@ -4,8 +4,8 @@ pyrob.commands.init
 
 import os
 import argparse
-from pyrob.utils import project, pip, git
-from pyrob.config.vars import VENV
+from pyrob.utils import project, git
+from pyrob.config.vars import VENV, DEFAULT_REQS
 from .install import install_from_args
 
 
@@ -25,7 +25,7 @@ def init(args: argparse.Namespace) -> None:
         git.init()
         project.make_venv(VENV)
         project.init(data)
-        install_from_args("black", "pylint", "mypy", "pytest")
+        install_from_args(DEFAULT_REQS)
 
         print("Project initialized! Happy hacking!")
 
