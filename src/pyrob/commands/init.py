@@ -4,14 +4,14 @@ pyrob.commands.init
 
 import os
 import shutil
-from argparse import Namespace
+import argparse
 import pyrob
 from pyrob.utils import meta, git, create_venv
 from pyrob.commands.install import install_from_args
 from pyrob.config.vars import PROJECT_JSON, VENV
 
 
-def init(args: Namespace) -> None:
+def init(args: argparse.Namespace) -> None:
     """
     Initialize a new project and generate a project.json file.
 
@@ -29,11 +29,12 @@ def init(args: Namespace) -> None:
             ignore=shutil.ignore_patterns("__pycache__*"),
         )
 
-        meta.write(PROJECT_JSON, data)
-        print("Creating virtual environment...")
         create_venv(VENV)
-        print("Installing packages...")
+        meta.write(PROJECT_JSON, data)
         install_from_args(["black", "pylint", "mypy", "pytest"])
+        git.init()
+        git.get_gitignore()
+
         print("Project initialized! Happy hacking!")
 
     except (KeyboardInterrupt, EOFError):
