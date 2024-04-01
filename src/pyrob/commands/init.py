@@ -3,12 +3,9 @@ pyrob.commands.init
 """
 
 import os
-import shutil
 import argparse
-import pyrob
-from pyrob.utils import meta, git, create_venv
-from pyrob.commands.install import install_from_args
-from pyrob.config.vars import PROJECT_JSON, VENV
+from pyrob.utils import project, pip, git
+from pyrob.config.vars import VENV
 
 
 def init(args: argparse.Namespace) -> None:
@@ -19,21 +16,15 @@ def init(args: argparse.Namespace) -> None:
         args: Command line arguments from argparse
     """
     try:
+        print("Initializing project...")
+
         base = from_default()
         data = base if args.y else with_prompts(base)
 
-        shutil.copytree(
-            src="".join([os.path.dirname(pyrob.__file__), "/", "__template__"]),
-            dst=os.getcwd(),
-            dirs_exist_ok=True,
-            ignore=shutil.ignore_patterns("__pycache__*"),
-        )
-
-        create_venv(VENV)
-        meta.write(PROJECT_JSON, data)
-        install_from_args(["black", "pylint", "mypy", "pytest"])
+        project.make_venv(VENV)
+        project.init(data)
+        pip.install_from_args("black", "pylint", "mypy", "pytest")
         git.init()
-        git.get_gitignore()
 
         print("Project initialized! Happy hacking!")
 
