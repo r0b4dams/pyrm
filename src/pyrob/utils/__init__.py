@@ -22,4 +22,5 @@ def create_venv(venv: str) -> None:
     Args:
         venv: path to virtual environment directory
     """
+    print("Creating virtual environment...")
     run(["python3", "-m", "venv", venv])
