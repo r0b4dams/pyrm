@@ -4,7 +4,7 @@ pyrob.utils.git
 
 import os
 from pyrob.config.vars import GITIGNORE_URL
-from . import run
+from .run import run
 
 
 def init() -> None:
@@ -27,5 +27,11 @@ def get_config() -> tuple[str, str]:
     return user, email
 
 
-def get_gitignore() -> None:
-    os.system(" ".join(["curl", "--silent", GITIGNORE_URL, ">", ".gitignore"]))
+def get_gitignore(path: str) -> None:
+    """
+    Fetches a .gitignore from GitHub's .gitignore template repo
+
+    Args:
+        path: The path at which to save the .gitignore file
+    """
+    os.system(" ".join(["curl", "-s", GITIGNORE_URL, f"> {path}/.gitignore"]))
