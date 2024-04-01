@@ -62,6 +62,7 @@ def from_default() -> dict:
         "author": f"{user} <{email}>",
         "description": "A new project!",
         "scripts": {
+            "start": "python3 src/app/main.py",
             "lint": "pylint src",
             "test": "pytest tests -v",
             "typecheck": "mypy src",
