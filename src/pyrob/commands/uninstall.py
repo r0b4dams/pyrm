@@ -3,12 +3,12 @@
 import os
 import sys
 import json
-from argparse import Namespace
+import argparse
 from pyrob.utils import meta, pip
 from pyrob.config.vars import VENV, PROJECT_JSON
 
 
-def uninstall(args: Namespace) -> None:
+def uninstall(args: argparse.Namespace) -> None:
     """
     Uninstall packages from virtual environment.
 

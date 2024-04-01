@@ -2,8 +2,8 @@
 pyrob.utils.pip
 """
 
-from . import run
-from ..config.vars import PYTHON
+from pyrob.config.vars import PYTHON
+from .run import run
 
 
 def install_from_reqs(path: str) -> None:
@@ -38,7 +38,7 @@ def uninstall(*pkgs: str) -> None:
 
 def requirements() -> dict:
     """
-    Cast pip freeze result to dict for package.json.
+    Cast pip freeze result to dict for project.json.
 
     Returns:
         A dict containing packages and their versions

@@ -4,7 +4,7 @@ pyrob.commands.run
 
 import os
 import sys
-from pyrob.utils import meta, create_venv
+from pyrob.utils import meta, project
 from pyrob.config.vars import VENV, PROJECT_JSON
 
 
@@ -24,7 +24,7 @@ def run(args) -> None:
         sys.exit("No script given")
 
     if not os.path.exists(VENV):
-        create_venv(VENV)
+        project.make_venv(VENV)
 
     try:
         script = meta.read(PROJECT_JSON)["scripts"][args.script]
