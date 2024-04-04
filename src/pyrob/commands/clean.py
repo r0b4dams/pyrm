@@ -2,8 +2,12 @@
 pyrob.commands.clean
 """
 
+from pyrob.utils.run import run
+
 
 def clean():
     """
-    doc str
+    Remove cache artifacts:
+
     """
+    run(["ls"])
