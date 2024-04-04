@@ -2,8 +2,10 @@
 pyrob.cli
 """
 
+import os
+import sys
 from argparse import ArgumentParser
-from pyrob import commands, __pkg_name__, __version__
+from pyrob import commands, __version__
 
 
 def main():
@@ -11,14 +13,14 @@ def main():
     entrypoint
     """
     parser = ArgumentParser(
-        prog=__pkg_name__,
+        prog=os.path.basename(sys.argv[0]),
         description="A CLI to manage dependencies in a Python project",
     )
     parser.add_argument(
         "-v", "--version", action="version", version=f"%(prog)s {__version__}"
     )
 
-    subparsers = parser.add_subparsers()
+    subparsers = parser.add_subparsers(title="command")
 
     init = subparsers.add_parser("init")
     init.add_argument("-y", action="store_true")
@@ -36,7 +38,9 @@ def main():
     run.add_argument("script", nargs="?")
     run.set_defaults(func=commands.run)
 
-    parser.parse_args()
+    clean = subparsers.add_parser("clean")
+    clean.set_defaults(func=commands.clean)
+
     args = parser.parse_args()
 
     if hasattr(args, "func"):

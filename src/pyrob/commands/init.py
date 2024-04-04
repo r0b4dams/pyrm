@@ -3,13 +3,12 @@ pyrob.commands.init
 """
 
 import os
-import tempfile
 import shutil
+import tempfile
 import argparse
-import pyrob
 from pyrob.utils import git, meta, project
 from pyrob.config.vars import VENV, DEFAULT_REQS
-from .install import install_from_args
+from pyrob.commands.install import install_from_args
 
 
 def init(args: argparse.Namespace) -> None:
@@ -27,7 +26,7 @@ def init(args: argparse.Namespace) -> None:
 
         git.init()
 
-        src = "".join([os.path.dirname(pyrob.__file__), "/", "__template__"])
+        src = os.path.join(os.path.dirname(__file__), "../", "__template__")
         dst = os.getcwd()
         ignore = shutil.ignore_patterns("__pycache__*")
 
@@ -35,7 +34,7 @@ def init(args: argparse.Namespace) -> None:
             git.get_gitignore(tmp)
             meta.write(f"{tmp}/project.json", data)
             shutil.copytree(src, tmp, dirs_exist_ok=True, ignore=ignore)
-            shutil.copytree(tmp, dst, dirs_exist_ok=True, ignore=ignore)
+            shutil.copytree(tmp, dst, dirs_exist_ok=True)
 
         project.make_venv(VENV)
         install_from_args(DEFAULT_REQS)

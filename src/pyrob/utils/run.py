@@ -7,7 +7,11 @@ import subprocess
 
 def run(cmd: list[str]) -> str:
     """
-    Run the given command
+    Simple wrapper to run the given command in a subprocess
+
+    Args:
+        cmd: list containing the given command and arguments
+             e.g. ['ls', '-a']
 
     Returns:
         stdout from subprocess
