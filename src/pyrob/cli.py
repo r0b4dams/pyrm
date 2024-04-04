@@ -36,6 +36,10 @@ def main():
     run.add_argument("script", nargs="?")
     run.set_defaults(func=commands.run)
 
+    clean = subparsers.add_parser("clean")
+    clean.add_argument("script", nargs=None)
+    clean.set_defaults(func=commands.clean)
+
     parser.parse_args()
     args = parser.parse_args()
 
