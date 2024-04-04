@@ -2,12 +2,17 @@
 pyrob.commands.clean
 """
 
-from pyrob.utils.run import run
+import os
+import shutil
+
+dirs_to_remove = [".venv", "__pycache__"]
 
 
-def clean():
+def clean(_) -> None:
     """
-    Remove cache artifacts:
-
+    Remove cache artifacts
     """
-    run(["ls"])
+    for dirpath, dirnames, _ in os.walk("."):
+        for dirname in dirnames:
+            if dirname in dirs_to_remove:
+                shutil.rmtree(os.path.join(dirpath, dirname))
