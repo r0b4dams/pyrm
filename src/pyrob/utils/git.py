@@ -9,7 +9,7 @@ from .run import run
 
 def init() -> None:
     """
-    Initialize git repository if not exists
+    Initialize git repository
     """
     if not os.path.exists(".git"):
         run(["git", "init"])
