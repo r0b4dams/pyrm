@@ -9,7 +9,7 @@ import argparse
 import pyrob
 from pyrob.utils import git, meta, project
 from pyrob.config.vars import VENV, DEFAULT_REQS
-from .install import install_from_args
+from pyrob.commands.install import install_from_args
 
 
 def init(args: argparse.Namespace) -> None:
