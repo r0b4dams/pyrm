@@ -16,12 +16,13 @@ pip install pyrob
 
 ## Usage
 
-| Command                     | Description                                           |
-| --------------------------- | ----------------------------------------------------- |
+| Command                      | Description                                           |
+| ---------------------------- | ----------------------------------------------------- |
 | `pyrob init [-y]`            | Initialize a new project                              |
 | `pyrob run [script]`         | Run the given command defined in project.json         |
 | `pyrob install [pkgs ...]`   | Install the given packages to virtual environment     |
 | `pyrob uninstall [pkgs ...]` | Uninstall the given packages from virtual environment |
+| `pyrob clean`                | Remove cache artifacts (e.g. `__pycache__`)           |
 
 ## Development
 
