@@ -5,7 +5,7 @@ pyrob.commands.clean
 import os
 import shutil
 
-dirs_to_remove = [".venv", "__pycache__"]
+dirs_to_remove = [".venv", "__pycache__", ".mypy_cache", ".pytest_cache"]
 
 
 def clean(_) -> None:
